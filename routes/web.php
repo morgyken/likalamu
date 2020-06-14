@@ -23,4 +23,4 @@ Route::get('/a/admin', 'HomeController@index')->name('admina-home');
 Route::get('/b/admin', 'HomeController@adminbhome')->name('adminb-home');
 Route::get('/center/home', 'HomeController@center')->name('center-home');
 Route::get('/student/home', 'HomeController@student')->name('student-home');
-Route::get('/tutor/home', 'HomeController@tutors')->name('tutor-home');
+Route::get('/tutor/home', 'HomeController@tutor')->name('tutor-home');

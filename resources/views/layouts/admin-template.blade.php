@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Spot - Bootstrap Freelance Template</title>
+  <title> Likalamu: Welocome </title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{{ URL::asset('spot/img/favicon.png ') }}" rel="icon">
-  <link href="{{ URL::asset('spot/img/apple-touch-icon.png ') }}" rel="apple-touch-icon">
+  <link href="{{ URL::asset('spot/img/favicon.png')}}" rel="icon">
+  <link href="{{ URL::asset('spot/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Raleway:400,300,700,900" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="{{ URL::asset('spot/lib/bootstrap/css/bootstrap.min.css ') }}" rel="stylesheet">
+  <link href="{{ URL::asset('spot/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
   <link href="{{ URL::asset('spot/lib/font-awesome/css/font-awesome.min.css ') }}" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="{{ URL::asset('spot/css/style.css') }}" rel="stylesheet ">
+  <link href="{{ URL::asset('spot/css/style.css ') }}" rel="stylesheet">
 
   <!-- =======================================================
     Template Name: Spot
@@ -31,144 +31,36 @@
   ======================================================= -->
 </head>
 
-<style media="screen">
-.modal-open {
-position: fixed;
-overflow: scroll;
-width: 100%;
-padding-right: 0!important;
-}
-</style>
-
 <body>
+  <!-- Fixed navbar -->
+  @include('extras.nav.navbar-admina')
 
-  @include('extras.nav.navbar-main')
-
-  <div id="headerwrap">
+  <div id="blue">
     <div class="container">
       <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2">
-          <h1>It Doesn't Take a Rocket <b>Scientist</b></h1>
-          <h2>It Takes a Designer</h2>
+          <h4>WELLCOME ADMIN @NAME</h4>
+          <p>USE THE APPLICATION TO REDUCE MONOTONY AND INCREASE WORK ETHICS.</p>
         </div>
       </div>
       <!-- row -->
     </div>
     <!-- container -->
   </div>
-  <!-- headerwrap -->
+  <!--  bluewrap -->
 
-  <div class="container w">
-    <div class="row centered">
-      <br><br>
-      <div class="col-lg-4">
-        <i class="fa fa-heart"></i>
-        <h4>DESIGN</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
 
-      <div class="col-lg-4">
-        <i class="fa fa-laptop"></i>
-        <h4>BOOTSTRAP</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
-
-      <div class="col-lg-4">
-        <i class="fa fa-trophy"></i>
-        <h4>SUPPORT</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
-    </div>
-    <!-- row -->
-    <br>
-    <br>
+  <div class="container desc">
+       @yield('content')
   </div>
   <!-- container -->
-
-  <!-- PORTFOLIO SECTION -->
-  <div id="dg">
-    <div class="container">
-      <div class="row centered">
-        <h4>LATEST WORKS</h4>
-        <br>
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="{{ URL::asset('spot/img/p01.png ') }}" alt=""></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="{{ URL::asset('spot/img/p03.png ') }}" alt=""></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="{{ URL::asset('spot/img/p02.png ') }}" alt=""></a>
-          </div>
-        </div>
-      </div>
-      <!-- row -->
-    </div>
-    <!-- container -->
-  </div>
-  <!-- DG -->
-
-  <!-- FEATURE SECTION -->
-  <div class="container wb">
-    <div class="row centered">
-      <br><br>
-      <div class="col-lg-8 col-lg-offset-2">
-        <h4>WE CREATE FIRST CLASS DESIGN</h4>
-        <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
-          when the brand can truly flex its muscles.</p>
-        <p><br/><br/></p>
-      </div>
-      <div class="col-lg-2"></div>
-      <div class="col-lg-10 col-lg-offset-1">
-        <img class="img-responsive" src="{{ URL::asset('spot/img/munter.png ') }}" alt="">
-      </div>
-    </div>
-    <!-- row -->
-  </div>
-  <!-- container -->
-
-  <div id="lg">
-    <div class="container">
-      <div class="row centered">
-        <h4>OUR AWESOME CLIENTS</h4>
-        <div class="col-lg-2 col-lg-offset-1">
-          <img src="{{ URL::asset('spot/img/c01.gif ') }}" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="{{ URL::asset('spot/img/c02.gif') }}" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="{{ URL::asset('spot/img/c03.gif') }}" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="{{ URL::asset('spot/img/c04.gif') }}" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="{{ URL::asset('spot/img/c05.gif ') }}" alt="">
-        </div>
-      </div>
-      <!-- row -->
-    </div>
-    <!-- container -->
-  </div>
-  <!-- dg -->
 
   <div id="r">
     <div class="container">
       <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2">
           <h4>WE ARE STORYTELLERS. BRANDS ARE OUR SUBJECTS. DESIGN IS OUR VOICE.</h4>
-          <p>We believe ideas come from everyone, everywhere. At BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths
+          <p>We believe ideas come from everyone, everywhere. At OurCompany, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths
             drive us, motivate us, and ultimately help us redefine the power of design.</p>
         </div>
       </div>
@@ -182,6 +74,7 @@ padding-right: 0!important;
     <div class="container">
       <div class="row centered">
         <a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-dribbble"></i></a>
+
       </div>
       <!-- row -->
     </div>
@@ -264,19 +157,14 @@ padding-right: 0!important;
     </div>
   </div>
 
-  @include('extras.modals.login-modal')
-  @include('extras.modals.register-modal')
-  
   <!-- JavaScript Libraries -->
-  <script src="{{ URL::asset('spot/lib/jquery/jquery.min.js ') }}"></script>
-  <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ URL::asset('spot/lib/php-mail-form/validate.js ') }}"></script>
-  <script src="{{ URL::asset('spot/lib/chart/chart.js ') }}"></script>
+  <script src="{{ URL::asset('spot/lib/jquery/jquery.min.js')}}"></script>
+  <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{ URL::asset('spot/lib/php-mail-form/validate.js')}}"></script>
+  <script src="{{ URL::asset('spot/lib/chart/chart.js')}}"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="{{ URL::asset('spot/js/main.js ') }}"></script>
-
-
+  <script src="{{ URL::asset('spot/js/main.js')}}"></script>
 
 </body>
 </html>
