@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title> Likalamu: Welocome </title>
+  <title> Likalamu: WELLCOME </title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="{{ URL::asset('spot/img/favicon.png')}}" rel="icon">
@@ -16,6 +17,12 @@
 
   <!-- Bootstrap CSS File -->
   <link href="{{ URL::asset('spot/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Theme included stylesheets -->
+  <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+  <!-- Theme included stylesheets -->
+  <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
   <link href="{{ URL::asset('spot/lib/font-awesome/css/font-awesome.min.css ') }}" rel="stylesheet">
@@ -183,9 +190,22 @@
   <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js')}}"></script>
   <script src="{{ URL::asset('spot/lib/php-mail-form/validate.js')}}"></script>
   <script src="{{ URL::asset('spot/lib/chart/chart.js')}}"></script>
+  <!-- Main Quill library -->
+  <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script type="text/javascript">
+    var editor = new Quill('.editor');  // First matching element will be used
+  </script>
 
   <!-- Template Main Javascript File -->
   <script src="{{ URL::asset('spot/js/main.js')}}"></script>
+  <script type="text/javascript">
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  </script>
 
 </body>
 </html>

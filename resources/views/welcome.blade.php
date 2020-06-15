@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
+  
   <!-- Favicons -->
   <link href="{{ URL::asset('spot/img/favicon.png ') }}" rel="icon">
   <link href="{{ URL::asset('spot/img/apple-touch-icon.png ') }}" rel="apple-touch-icon">
@@ -266,7 +266,7 @@ padding-right: 0!important;
 
   @include('extras.modals.login-modal')
   @include('extras.modals.register-modal')
-  
+
   <!-- JavaScript Libraries -->
   <script src="{{ URL::asset('spot/lib/jquery/jquery.min.js ') }}"></script>
   <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js') }}"></script>

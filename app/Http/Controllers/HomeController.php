@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admina/home');
+        return view('extras.modals.post-question-modal');
     }
 
     public function adminbhome()
@@ -44,5 +44,10 @@ class HomeController extends Controller
     public function tutors()
     {
       return view ('tutor/home');
+    }
+
+    public function postQuestion()
+    {
+      return '';
     }
 }
