@@ -118,13 +118,14 @@ cursor: text !important;
 
       @foreach($comments as $comm)
 
-                  <div class="comment-list">
+                <div class="comment-list">
                       <div class="single-comment justify-content-between d-flex">
                           <div class="user justify-content-between d-flex">
                               <div class="thumb">
                                   <img src="{{ URL::asset('opium/img/blog/c1.jpg ')}}" alt="">
                               </div>
                               <div class="desc">
+                                <h3>Comment</h3>
                                   <h4><a href="#"> Morgyken</a> {{ $comm->created_at }}</h4>
 
                                   <p class="date"> </p>
