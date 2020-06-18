@@ -275,8 +275,19 @@ hr {
 
 .desc i {
   color: #ff7878;
-  font-size: 12px;
+  font-size: 23px;
   padding: 5px;
+}
+
+.download-files{
+  font-size:16px;
+  font-weight:600;
+  line-height: 15px;
+  color:#8f8f9d;
+  border-radius:
+  20px;
+  padding-left:10px;
+  margin: 10px;
 }
 
 /***** MODAL CONTACT *****/

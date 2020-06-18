@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Controllers\AdminQuestionController;
+
 class HomeController extends Controller
 {
     /**
@@ -23,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('extras.modals.post-question-modal');
+        return view('admina.home');
     }
 
     public function adminbhome()
@@ -46,8 +48,4 @@ class HomeController extends Controller
       return view ('tutor/home');
     }
 
-    public function postQuestion()
-    {
-      return '';
-    }
 }

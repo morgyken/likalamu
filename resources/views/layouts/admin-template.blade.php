@@ -48,9 +48,7 @@
     <!-- container -->
   </div>
   <!--  bluewrap -->
-
-
-  <div class="container desc">
+  <div class="container desc" style="background:#fff;font-size: 18px;">
        @yield('content')
   </div>
   <!-- container -->
@@ -157,7 +155,7 @@
     </div>
   </div>
 
-  <!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
   <script src="{{ URL::asset('spot/lib/jquery/jquery.min.js')}}"></script>
   <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js')}}"></script>
   <script src="{{ URL::asset('spot/lib/php-mail-form/validate.js')}}"></script>

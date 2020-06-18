@@ -7,19 +7,19 @@
     <div class="col-lg-6">
       <img class="img-circle image-main" src="{{ URL::asset('spot/img/writer.png ') }}" width="110" height="110" alt="">
       <h2> Ask Question</h2>
-      <p><a href="#">@View my Writers</a></p>
-    </div>
+      <p><a href="#" data-toggle="modal" data-target="#myModal">@Click Here to ask Question</a></p>
+      </div>
     <div class="col-lg-3">
       <img class="img-circle" src="{{ URL::asset('spot/img/writer.png ') }}" width="110" height="110" alt="">
       <h4>All Writers</h4>
-      <p><a href="#">@View my Writers</a></p>
+      <p><a href="{{route('adm-view-questions')}}">@View my Writers</a></p>
     </div>
     <!-- col-lg-3 -->
 
     <div class="col-lg-3">
       <img class="img-circle" src="{{ URL::asset('spot/img/question-mark.png ') }}" width="110" height="110" alt="">
       <h4>All Questions</h4>
-      <p><a href="#">@view My Questions</a></p>
+      <p><a href="{{route('adm-view-questions')}}">@view My Questions</a></p>
     </div>
     <!-- col-lg-3 -->
 
@@ -96,4 +96,6 @@
   <!-- container -->
 </div>
 <!-- DG -->
+@include('extras.modals.post-question-modal')
+
 @endsection

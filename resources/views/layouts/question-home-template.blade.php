@@ -72,28 +72,7 @@
 
 
   <div class="container desc">
-      @for($i = 0; $i< 25;$i++)
-    <div class="row">
-      <div class="col-lg-2 centered">
-        <img src="{{ URL::asset('spot/img/pic.jpg' )}}" alt="" height="50">
-          <h5>Name</h5>
-      </div>
-      <!-- col-lg-6 -->
-      <div class="col-lg-10">
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. r since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        <p>
-          <i class="fa fa-circle-o"></i> Price: $45. Deadline 12:12:34 <a href="#">view </a>
-
-        </p>
-      </div>
-    </div>
-    <br>
-    <hr>
-
-    @endfor
-    <!-- row -->
-
-
+  @yield('content')
     <!-- row -->
     <br><br>
   </div>

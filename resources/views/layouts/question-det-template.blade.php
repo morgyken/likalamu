@@ -23,6 +23,10 @@
   <!-- Main Stylesheet File -->
   <link href="{{ URL::asset('spot/css/style.css ') }}" rel="stylesheet">
 
+  <!-- Include font awesome  -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
   <!-- =======================================================
     Template Name: Spot
     Template URL: https://templatemag.com/spot-bootstrap-freelance-template/
@@ -73,76 +77,8 @@
 
   <div class="container desc">
 
-    <div class="row">
-      <div class="col-lg-2 centered">
-        <h3> </h3>
-        <img src="{{ URL::asset('spot/img/pic.jpg' )}}" alt="" height="50">
-          <h5>Name</h5>
-      </div>
-      <!-- col-lg-6 -->
-      <div class="col-lg-8" style="background-color:#fff">
-        <h2> Lorem Ipsum is simply dummy text of the printing and typesetting industry </h2>
-        <hr>
-        <h5> Price: $45. Deadline 12:12:34 </h5>
-        <hr>
-      <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-         labore et dolore magna aliqua. Nisl purus in mollis nunc sed.
-        Arcu odio ut sem nulla pharetra. Sed faucibus turpis in eu mi bibendum. Luctus venenatis lectus magna
-         fringilla urna porttitor rhoncus dolor purus. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-          proin gravida. Egestas quis ipsum suspendisse ultrices gravida. Nulla at volutpat diam ut venenatis
-          tellus in metus vulputate.</p>
-      <p> Bibendum ut tristique et egestas quis ipsum suspendisse ultrices
-             gravida. Sed arcu non odio euismod lacinia. Proin sagittis nisl rhoncus mattis rhoncus. Blandit
-             libero volutpat sed cras ornare arcu dui vivamus arcu. Nulla aliquet enim tortor at.</p>
+    @yield('content')
 
-  <p> Feugiat nibh sed pulvinar proin. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Ultricies leo integer malesuada nunc vel risus commodo viverra. At lectus urna duis convallis convallis. Est ultricies integer quis auctor elit sed vulputate mi sit. Vel pretium lectus quam id leo in vitae turpis massa. Laoreet sit amet cursus sit amet dictum. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Consequat semper viverra nam libero. Nascetur ridiculus mus mauris vitae. Feugiat sed lectus vestibulum mattis ullamcorper velit sed. Ut consequat semper viverra nam libero justo. Et sollicitudin ac orci phasellus egestas tellus. Laoreet sit amet cursus sit amet dictum. Consequat id porta nibh venenatis. Nisl nisi scelerisque eu ultrices vitae auctor eu augue ut.</p>
-
-  <p> Sed arcu non odio euismod lacinia. Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Nisi vitae suscipit tellus mauris a diam. Amet facilisis magna etiam tempor. Etiam sit amet nisl purus in mollis nunc sed. Non blandit massa enim nec dui nunc. Eget duis at tellus at urna condimentum mattis. Sollicitudin ac orci phasellus egestas. Consequat mauris nunc congue nisi. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. </p>
-        </p>
-
-      </div>
-        </div>
-        <br> <br> <hr>
-          <div class="row">
-        <div class="col-lg-2">
-        </div>
-
-      <div class="col-lg-8">
-
-    <form>
-      <div class="form-group">
-      <label for="comment">Post comment or Answer here</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
-      </div>
-        <div class="form-inline">
-          <br> <br>
-
-          <label class="radio">
-              <input type="radio" value="1"/>
-              Mark as Answer
-          </label>
-          <br> <br>
-
-        </div>
-        <div class="form-group">
-          <label for="comment">Post comment or Answer here</label>
-          <input type="file" name="file">
-        </div>
-
-        <div class="form-group">
-        <button type="button" class="btn btn-warning btn-lg">Post Comment </button>
-        <button type="button" class="btn btn-success btn-lg">Post Answer</button>
-        </div>
-        </form>
-      </div>
-    </div>
-
-    <br>
-    <hr>
-    <!-- row -->
-
-    <!-- row -->
-    <br><br>
   </div>
   <!-- container -->
 

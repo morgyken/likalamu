@@ -6,16 +6,10 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <!-- Main Quill library -->
-
-<!-- include libraries(jQuery, bootstrap) -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <!-- include summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -55,18 +49,18 @@ input[readonly] {
 
 <div class="container">
   <h2>Large Modal</h2>
-  <!-- Button to Open the Modal -->
+  <!-- Button to Open the Modal
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     Open modal
   </button>
 
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
+  The Modal -->
+  <div class="modal fade" id="myModal" style="font-size: 80%">
     <div class="modal-dialog modal-post modal-lg">
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header">
+        <div class="modal-header" style="background:#3498DB">
           <h4 class="modal-title"> Post Question</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
@@ -82,8 +76,8 @@ input[readonly] {
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
-              <label for="usr">Body:</label>
-              <<textarea id="summernote" name="body"></textarea>
+              <label for="body">Body:</label>
+              <textarea id="summernote" name="body"></textarea>
             </div>
             <hr>
 
@@ -146,7 +140,7 @@ input[readonly] {
         </div>
 
         <!-- Modal footer -->
-        <div class="modal-footer">
+        <div class="modal-footer" style="background:#ff7878">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
 
@@ -168,8 +162,6 @@ $('#summernote').summernote({
          ['font', ['bold', 'underline', 'clear']],
          ['color', ['color']],
          ['para', ['ul', 'ol', 'paragraph']],
-         ['table', ['table']],
-         ['insert', ['link', 'picture', 'video']],
          ['view', ['fullscreen', 'codeview', 'help']]
        ]
      });
