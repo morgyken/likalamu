@@ -12,12 +12,21 @@ use DB;
 
 use Response;
 
+use App\User;
+
+use Illuminate\Support\Facades\Storage;
+
+use URL;
+
 class AskQuestionController extends Controller
 {
     //
-
-    public function postQuestion(Request $request)
+  public function postQuestion(Request $request)
    {
+
+    //  $input = $request->all();
+
+
        $question_id = rand (99999,999999);
 
        $allre= $request->all();
@@ -61,13 +70,15 @@ class AskQuestionController extends Controller
 
            ]);
 
+
+
        return redirect() ->back();
    }
 
 
        public function PostComments(Request $request){
-         // random number
-          $commentid = rand (99999,999999);
+
+        $commentid = rand (99999,999999);
          //upload files
 
          //files
@@ -77,45 +88,57 @@ class AskQuestionController extends Controller
          $questionid = $request->questionid;
          //path
 
-         if($request->mark == null)
-         {
-            $dest = public_path().'/storage/uploads/'.$questionid.'/comments/'.$commentid.'/';
-            $mark ='comment';
-         }
 
-         else {
-            $dest = public_path().'/storage/uploads/'.$questionid.'/answer/'.$commentid.'/';
-            $mark ='ans';
-         }
+         //add to session
+         session(['questionid' => $questionid, 'commentid'=>$commentid ]);
+
 
 
         // dd($request->all());
 
         //upload files
-        $this->uploadFiles($file, $dest);
+      //  $this->uploadFiles($file, $dest);
 
         //save data to database
 
-        DB::table('comments_models')->insert(
-             [
-                 'answer' =>  htmlspecialchars($request['answer']),
 
-                 'userid'   => Auth::user()->id,
 
-                 'commentid'   => $commentid,
+          if($request->mark == null)
+          {
+             $dest = public_path().'/storage/uploads/'.$questionid.'/comments/'.$commentid.'/';
+             $mark ='comment';
+          }
 
-                 'questionid'   =>$request->questionid,
+          else {
+             $dest = public_path().'/storage/uploads/'.$questionid.'/answer/'.$commentid.'/';
+             $mark ='ans';
+          }
 
-                 'mark'     => $request->mark,
-                //dates are here
-                 'created_at' =>\Carbon\Carbon::now()->toDateTimeString(),
+        //  $file = $request->file('file');
+          //$dest = public_path().'/storage/uploads/'.$questionid.'/comments/'.$commentid.'/';
+          $this->uploadFiles($file, $dest);
 
-                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+          DB::table('comments_models')->insert(
+                 [
+                     'answer' =>  htmlspecialchars($request->answer),
 
-             ]);
+                     'userid'   => Auth::user()->id,
 
-                  //return back tp the previous url
+                     'commentid'   => $commentid,
+
+                     'questionid'   =>$request->questionid,
+
+                     'mark'     => $request->mark,
+                    //dates are here
+                     'created_at' =>\Carbon\Carbon::now()->toDateTimeString(),
+
+                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
+                 ]);
+
+        //  return response()->json(['success'=>$request]);
          return redirect() ->back();
+
 
        }
 
@@ -136,5 +159,29 @@ class AskQuestionController extends Controller
        }
 
 
+       public function CommentsDocumentUpload(Request $request)
+       {
+         if($request->hasFile('file')){
+               $file = $request->file('file');
+               $dest = public_path().'/storage/uploads/'.$questionid.'/comments/'.$commentid.'/';
+               $this->uploadFiles($file, $dest);
+           }
+       }
 
+       public function document_upload(Request $request) {
+
+         dd($request);
+
+       if($request->hasFile('file')){
+           $file = $request->file('file');
+           $completeFileName = $file->getClientOriginalName();
+           $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+           $extension = $file->getClientOriginalExtension();
+           $randomized = rand();
+           $documents = str_replace(' ', '', $fileNameOnly).'-'.$randomized.''.time().'.'.$extension;
+           $path = $file->storeAs('public/users', $documents);
+           $test2 = $request->hasFile('file');
+
+       }
+   }
 }

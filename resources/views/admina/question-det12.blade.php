@@ -16,6 +16,7 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/dropzone.min.css" integrity="sha256-iDg4SF4hvBdxAAFXfdNrl3nbKuyVBU3tug+sFi1nth8=" crossorigin="anonymous" />
 </head>
 
 <style media="screen">
@@ -112,17 +113,6 @@ cursor: text !important;
 
     <div class="row">
       <div class="col-lg-1">
-
-      </div>
-
-      <div class="col-lg-10">
-          @include('extras.comm.comment-files')
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-lg-1">
       </div>
       <div class="col-lg-10">
       <label for="comment">Comments and Answers</label>
@@ -190,7 +180,7 @@ cursor: text !important;
 
         <div class="col-lg-10">
 
-          <form method="post" action="{{route('post-comment')}}" enctype="multipart/form-data">
+          <form id="postcomm"  enctype="multipart/form-data">
             <div class="form-group">
             <label for="comment">Post comment or Answer here</label>
                 <textarea id="summernote" name="answer"></textarea>
@@ -217,7 +207,7 @@ cursor: text !important;
                               <span class="input-group-btn">
                                   <span class="btn btn-primary btn-file">
 
-                                      Browse&hellip; <input class="form-control" type="file"name="file[]" multiple>
+                                      Browse&hellip; <input class="form-control" type="file"name="file" multiple>
                                   </span>
                               </span>
                               <input type="text" class="form-control" readonly>
@@ -227,10 +217,31 @@ cursor: text !important;
               </div>
 
               <div class="form-group">
-              <button type="submit"  class="btn btn-warning btn-lg"> Continue </button>
+              <button type="submit" id="btn-submit" class="btn btn-warning btn-lg"> Continue </button>
               </div>
               </form>
+
+
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-10">
+
+        <h2 class="text-center p-4 bg-dark text-white">Attach <span>Documents </span></h2>
+
+        <form action="/donee_doc_upload" class="dropzone" id="dropzonewidget" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <input hidden name="documents" id="documents" type="text" />
+        </form>
+
+
+        </div>
+
       </div>
 
 <br>
@@ -244,6 +255,12 @@ cursor: text !important;
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+<!-- drop zone css -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/dropzone.min.js"
+integrity="sha256-fegGeSK7Ez4lvniVEiz1nKMx9pYtlLwPNRPf6uc8d+8="
+crossorigin="anonymous">
+</script>
+
 <script type="text/javascript">
 $('#summernote').summernote({
        placeholder: 'Type your Question Content Here',
@@ -286,6 +303,7 @@ $(document).ready( function() {
 
 <script type="text/javascript">
 
+$('document').ready(function(){
     $.ajaxSetup({
 
         headers: {
@@ -297,36 +315,73 @@ $(document).ready( function() {
     });
 
 
-
-    $("#btn-submit").click(function(e){
+    $("#btn-submit").on('click', function(e){
 
         e.preventDefault();
 
-        var answer = $("input[name=answer]").val();
+        var answer = $("textarea[name=answer]").val();
 
         var mark = $("input[name=mark]").val();
 
         var questionid = $("input[name=questionid]").val();
 
-        var file = $("input[name=file]").val();
+        var file = $("file[name=file").val();
+
+        var token = $("input[name=_token]").val();
+
 
 
         $.ajax({
 
-           type:'POST',
+           type:"post",
 
-           url:'{{route("post-comment")}}',
+           url:"{{route('post-comment')}}",
 
-           data:{answer:answer, mark:mark, questionid:questionid, file:file},
+           data:{answer:answer, _token:token, mark:mark, questionid:questionid, file:file},
+
+           dataType: "json",
+
+           encode: true,
 
            success:function(data){
+             console.log('my data:' + JSON.stringify(data));
+            }
 
-              alert(data.success);
-
-           }
+          });
 
         });
+
+
 	});
+
+</script>
+
+<script type="text/javascript">
+
+    var action = '/dropzone';
+    var acceptedFileTypes = ".jpeg,.jpg,.png,.gif, .psd, .docx, .doc, .pdf, .zip, .rar, .ppt, .psd"; //dropzone requires this param be a comma separated list
+    var fileList = new Array;
+    var i = 0;
+    var callForDzReset = false;
+    $("#dropzonewidget").dropzone({
+        url: "{{route('upload-files')}}",
+        addRemoveLinks: true,
+        maxFiles: 20,
+        acceptedFiles:acceptedFileTypes ,
+        maxFilesize: 5,
+        init: function () {
+            this.on("success", function (file, serverFileName) {
+                file.serverFn = serverFileName;
+                fileList[i] = {
+                    "serverFileName": serverFileName,
+                    "fileName": file.name,
+                    "fileId": i
+                };
+                i++;
+            });
+        }
+    });
+
 
 </script>
 @endsection

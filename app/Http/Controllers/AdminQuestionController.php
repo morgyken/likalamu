@@ -39,8 +39,9 @@ class AdminQuestionController extends Controller
         //read comments
         $comments = $this->getComments($questionid);
 
-              //  dd($data->header);
         //return the view for question detail
+
+
 
         return view('admina.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments] );
     }
@@ -106,12 +107,11 @@ class AdminQuestionController extends Controller
     return $data;
   }
 
-  public function GetCommentsFiles($question, $messageid, $fileName){
+  public function GetCommentsFiles($questionid, $commentid, $filename, $type){
 
-          $dest = public_path().'/storage/uploads/'.$question.'/comments/'.$messageid.'/'.$fileName;
+          $dest = public_path().'/storage/uploads/'.$questionid.'/'.$type.'/'.$commentid.'/'.$filename;
 
           return Response::download($dest);
     }
-
 
 }

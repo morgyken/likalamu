@@ -33,21 +33,29 @@ Route::get('/tutor/home', 'HomeController@tutor')->name('tutor-home');
 Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
 
 
-
-Route::post('/a/admin/post/comm/', 'AskQuestionController@PostComments')->name('post-comment');
+Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
+Route::any('/a/admin/post/comm/', 'AskQuestionController@PostComments')->name('post-comment');
 
 Route::get('/a/admin/get/all', 'AdminQuestionController@getAllQuestions')->name('adm-view-questions');
 
 Route::get('/a/admin/get/det/{questionid}', 'AdminQuestionController@viewQuestionDetails')
           ->name('admin-question-det');
 
+Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-files');
+
 
 //files
 
-Route::any('file-download/{question_id}/{filename}/', ['as'=>'file-download',
+Route::any('file-download/{question_id}/{filename}/', ['as'=>'file-download','uses' =>'AdminQuestionController@downloads']);
 
-		'uses' =>'AdminQuestionController@downloads']);
+Route::any('file-downloads/{questionid}/{commentid}/{filename}/{type}', ['as'=>'response-download',	'uses' =>'AdminQuestionController@GetCommentsFiles']);
 
-Route::any('file-downloads/{questionid}/{commentid}/{filename}/', ['as'=>'response-download',
 
-		'uses' =>'AdminQuestionController@GetCommentsFiles']);
+
+Route::get('dropzone', 'DropzoneController@index');
+
+Route::post('dropzone/upload', 'DropzoneController@upload')->name('dropzone.upload');
+
+Route::get('dropzone/fetch', 'DropzoneController@fetch')->name('dropzone.fetch');
+
+Route::get('dropzone/delete', 'DropzoneController@delete')->name('dropzone.delete');
