@@ -44,6 +44,17 @@ Route::get('/a/admin/get/det/{questionid}', 'AdminQuestionController@viewQuestio
 Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-files');
 
 
+
+
+//tutor routes
+
+Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
+Route::get('/tutor/view/question/details/{questionid}', 'TutorController@TutorQuestionDetails')->name('tutor-question-det');
+Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-det');
+
+
+
+
 //files
 
 Route::any('file-download/{question_id}/{filename}/', ['as'=>'file-download','uses' =>'AdminQuestionController@downloads']);

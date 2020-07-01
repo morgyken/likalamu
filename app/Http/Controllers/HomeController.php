@@ -43,7 +43,7 @@ class HomeController extends Controller
       return view ('student/home');
     }
 
-    public function tutors()
+    public function tutor()
     {
       return view ('tutor/home');
     }

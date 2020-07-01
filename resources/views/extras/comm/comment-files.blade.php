@@ -2,12 +2,6 @@
 
     <h5> Conversation History </h5>
         @foreach($comments as $comm)
-          <div class="comment-list">
-             <div class="single-comment justify-content-between d-flex">
-                 <div class="user justify-content-between d-flex">
-                     <div class="thumb">
-                         <img src="{{ URL::asset('opium/img/blog/c1.jpg ')}}" alt="">
-                     </div>
                      <div class="desc">
                          <h5><a href="#"> Morgyken</a></h5>
                           Time:  {{ $comm->created_at }}
@@ -18,11 +12,7 @@
 
                      </div>
 
-                 </div>
 
-             </div>
-
-         </div>
 
          @if($comm->mark ==1)
          <?php  $type = "answer"?>
@@ -50,6 +40,3 @@
          </div>
 
          @endforeach
-
-         </div>
-     </div>

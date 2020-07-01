@@ -1,5 +1,5 @@
 
-@extends('layouts.question-det-template')
+@extends('layouts.template')
 
 @section('content')
 
@@ -239,6 +239,7 @@ cursor: text !important;
 
 <!-- row -->
 <br><br>
+
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
