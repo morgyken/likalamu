@@ -51,6 +51,12 @@ Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-fil
 Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
 Route::get('/tutor/view/question/details/{questionid}', 'TutorController@TutorQuestionDetails')->name('tutor-question-det');
 Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-det');
+Route::post('/tutor/details/profile/', 'TutorController@UpdateProfile')->name('update-profile');
+Route::post('/tutor/details/account/', 'TutorController@UpdateAccount')->name('update-account');
+
+Route::post('/tutor/details/payments/', 'TutorController@UpdatePaymentDetails')->name('tutor-payment');
+
+
 
 
 
@@ -60,13 +66,3 @@ Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-
 Route::any('file-download/{question_id}/{filename}/', ['as'=>'file-download','uses' =>'AdminQuestionController@downloads']);
 
 Route::any('file-downloads/{questionid}/{commentid}/{filename}/{type}', ['as'=>'response-download',	'uses' =>'AdminQuestionController@GetCommentsFiles']);
-
-
-
-Route::get('dropzone', 'DropzoneController@index');
-
-Route::post('dropzone/upload', 'DropzoneController@upload')->name('dropzone.upload');
-
-Route::get('dropzone/fetch', 'DropzoneController@fetch')->name('dropzone.fetch');
-
-Route::get('dropzone/delete', 'DropzoneController@delete')->name('dropzone.delete');

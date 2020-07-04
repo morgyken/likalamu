@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration
             $table->text('tutorid')->nullable();
             $table->text('accountid')->nullable();
             $table->string('level')->nullable();
-            $table->string('state')->unique();
+            $table->string('state')->nullable(); //active /inactive
             $table->string('paymentmethodid')->nullable();
             $table->rememberToken();
             $table->timestamps();

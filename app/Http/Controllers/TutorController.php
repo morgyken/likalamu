@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use Auth;
+
 class TutorController extends Controller
 {
     //
@@ -44,6 +46,69 @@ class TutorController extends Controller
 
       return view('tutor.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments] );
 
+    }
+
+    public function UpdateProfile(Request $request)
+    {
+      $random = rand(999,9999);
+      $affected = DB::table('tutors')
+              ->where('id', Auth::user()->id)
+              ->update([
+                'tutorid' =>$random,
+
+                'about'=> $request->about,
+
+                'phone' => $request->phone,
+
+                'country' =>$request->country,
+
+                'language' =>$request->language,
+
+                'software' => $request->software,
+
+                'expertise' => $request->expertise,
+
+                'school'=>$request->school
+              ]);
+
+      return redirect() ->back();
+    }
+
+    public function UpdateAccount(Request $request)
+    {
+
+      $random = rand(999,9999);
+
+      $affected = DB::table('accounts')
+              ->where('id', Auth::user()->id)
+              ->update([
+                'accountid'=> $random,
+                'level' =>'beginer',
+                'state' =>'Active',
+                'paymentmethodid' =>$random
+
+              ]);
+          return redirect() ->back();
+    }
+
+    public function UpdatePaymentDetails(Request $request)
+    {
+
+      $random = rand(999,9999);
+
+      $affected = DB::table('payment_details')
+              ->where('id', Auth::user()->id)
+              ->update([
+                'accountid'=> $random,
+                'accountid' => rand(999,9999),
+                'paypalemail' =>$request->paypalemail,
+                'mpesa' =>$request->mpesa,
+                'amountdue' =>$request->amountdue,
+                'minamount'=> $request->minamount,
+                'total' => $request->total
+
+              ]);
+          return redirect() ->back();
     }
 
     public function TutorDetails(){

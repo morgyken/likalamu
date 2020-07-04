@@ -18,8 +18,10 @@ class CreatePaymentDetailsTable extends Migration
             $table->text('tutorid')->nullable();
             $table->text('accountid')->nullable();
             $table->string('paypalemail')->nullable();
-            $table->string('mpesa')->unique();
-            $table->string('minamount')->unique();
+            $table->string('mpesa')->nullable();
+            $table->string('amountdue')->nullable();
+            $table->string('minamount')->nullable();
+            $table->text('total')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
