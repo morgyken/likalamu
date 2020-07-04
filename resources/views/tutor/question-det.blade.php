@@ -1,5 +1,5 @@
 
-@extends('layouts.template')
+@extends('layouts.question-det-template')
 
 @section('content')
 
@@ -119,67 +119,10 @@ cursor: text !important;
           @include('extras.comm.comment-files')
       </div>
 
-    </div>
-
-    <div class="row">
-      <div class="col-lg-1">
-      </div>
-      <div class="col-lg-10">
-      <label for="comment">Comments and Answers</label>
-
-      @foreach($comments as $comm)
-
-                <div class="comment-list">
-                      <div class="single-comment justify-content-between d-flex">
-                          <div class="user justify-content-between d-flex">
-                              <div class="thumb">
-                                  <img src="{{ URL::asset('opium/img/blog/c1.jpg ')}}" alt="">
-                              </div>
-                              <div class="desc">
-                                <h3>Comment</h3>
-                                  <h4><a href="#"> Morgyken</a> {{ $comm->created_at }}</h4>
-
-                                  <p class="date"> </p>
-                                  <p class="comment">
-                                     {!! htmlspecialchars_decode($comm->answer, ENT_NOQUOTES)  !!}
-                                  </p>
-
-                              </div>
-
-                          </div>
-
-                      </div>
-
-                  </div>
-                  <?php
-                  if($comm->mark == 1)
-                  $resfiles = \App\Http\Controllers\AdminQuestionController::CommentFiles($data->questionid,  $comm->commentid, 'answer');
-                  else {
-                    // code...
-                    $resfiles = \App\Http\Controllers\AdminQuestionController::CommentFiles($data->questionid,  $comm->commentid, 'comments');
-                  }
-                  ?>
-                  <div class="col-md-12">
-                      @foreach($resfiles as $file)
-
-                          <p class="down-files"><a href="{{route('response-download',
-                                          [
-                                              'questionid' => $data->questionid,
-                                              'commentid' => $comm->commentid,
-                                              'filename'=>$file['basename']
-                                           ])}}"
-                              >
-                          <i class="icon-download-alt">{{$file['basename'] }} </i></a>
-                          </p>
-                      @endforeach
-                  </div>
-
-              @endforeach
-
-
-      </div>
+  
 
     </div>
+
 
       <br> <hr>
 
@@ -239,7 +182,6 @@ cursor: text !important;
 
 <!-- row -->
 <br><br>
-
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>

@@ -79,15 +79,11 @@ class AskQuestionController extends Controller
        public function PostComments(Request $request){
 
         $commentid = rand (99999,999999);
-         //upload files
-
-         //files
+        //files
          $file = $request->file;
 
          //question id
          $questionid = $request->questionid;
-         //path
-
 
          //add to session
          session(['questionid' => $questionid, 'commentid'=>$commentid ]);

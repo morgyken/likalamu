@@ -107,11 +107,11 @@ class AdminQuestionController extends Controller
     return $data;
   }
 
-  public function GetCommentsFiles($questionid, $commentid, $filename, $type){
+  public function GetCommentsFiles($questionid, $commentid,  $type, $filename){
 
           $dest = public_path().'/storage/uploads/'.$questionid.'/'.$type.'/'.$commentid.'/'.$filename;
 
-          return Response::download($dest);
+        return Response::download($dest);
     }
 
 }

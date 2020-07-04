@@ -30,8 +30,10 @@ Route::get('/student/home', 'HomeController@student')->name('student-home');
 Route::get('/tutor/home', 'HomeController@tutor')->name('tutor-home');
 
 //admin Question Controllers
+
 Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
 
+//Admin get dtails
 
 Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
 Route::any('/a/admin/post/comm/', 'AskQuestionController@PostComments')->name('post-comment');
@@ -43,9 +45,6 @@ Route::get('/a/admin/get/det/{questionid}', 'AdminQuestionController@viewQuestio
 
 Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-files');
 
-
-
-
 //tutor routes
 
 Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
@@ -53,16 +52,12 @@ Route::get('/tutor/view/question/details/{questionid}', 'TutorController@TutorQu
 Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-det');
 Route::post('/tutor/details/profile/', 'TutorController@UpdateProfile')->name('update-profile');
 Route::post('/tutor/details/account/', 'TutorController@UpdateAccount')->name('update-account');
-
 Route::post('/tutor/details/payments/', 'TutorController@UpdatePaymentDetails')->name('tutor-payment');
-
-
-
-
 
 
 //files
 
 Route::any('file-download/{question_id}/{filename}/', ['as'=>'file-download','uses' =>'AdminQuestionController@downloads']);
 
-Route::any('file-downloads/{questionid}/{commentid}/{filename}/{type}', ['as'=>'response-download',	'uses' =>'AdminQuestionController@GetCommentsFiles']);
+Route::any('file-downloads/{questionid}/{commentid}/{type}/{filename}/',
+      ['as'=>'response-download',	'uses' =>'AdminQuestionController@GetCommentsFiles']);

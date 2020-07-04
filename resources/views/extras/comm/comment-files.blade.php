@@ -7,7 +7,7 @@
                           Time:  {{ $comm->created_at }}
                          <p class="date"> </p>
                          <p class="comment">
-                            {{ $comm->answer }}
+                      {!! htmlspecialchars_decode($comm->answer, ENT_NOQUOTES)  !!}
                          </p>
 
                      </div>
