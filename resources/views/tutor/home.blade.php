@@ -12,7 +12,7 @@
                       <div class="col-lg-6">
                         <img class="img-circle image-main" src="{{ URL::asset('spot/img/question-mark.png ') }}" width="110" height="110" alt="">
                         <h2> All Questions </h2>
-                        <p><a href="{{ route('tutor-all-questions')}}" >@Click Here view available questions</a></p>
+                        <p><a href="{{ route('tutor-all-questions')}}" >@Click Here view available question</a></p>
                         </div>
 
                       <div class="col-lg-3">
@@ -26,7 +26,7 @@
                         <img class="img-circle" src="{{ URL::asset('spot/img/writer.png') }}" width="110" height="110" alt="">
                         <h4>Profiles</h4>
 
-                        <p><a href="#">@View My Profile</a></p>
+                        <p><a href="{{route('tutor-det')}}">@View My Profile</a></p>
                       </div>
                       <!-- col-lg-3 -->
 

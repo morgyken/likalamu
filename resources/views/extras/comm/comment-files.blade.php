@@ -22,21 +22,30 @@
          @endif
          <?php
           $resfiles = \App\Http\Controllers\AdminQuestionController::CommentFiles($data->questionid,  $comm->commentid, $type);
+          if($resfiles != null)
+          {
+
+
         ?>
          <div class="col-md-12">
+
              @foreach($resfiles as $file)
 
                  <p class="down-files"><a href="{{route('response-download',
                                  [
                                      'questionid' => $data->questionid,
                                      'commentid' => $comm->commentid,
-                                     'type' => $type,
+                                     'type'  => $type,
                                      'filename'=>$file['basename']
                                   ])}}"
                      >
                  <i class="icon-download-alt">{{$file['basename'] }} </i></a>
                  </p>
              @endforeach
+
+             <?php
+              }
+              ?>
          </div>
 
          @endforeach

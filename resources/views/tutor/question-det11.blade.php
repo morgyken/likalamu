@@ -161,7 +161,7 @@ cursor: text !important;
                   ?>
                   <div class="col-md-12">
                       @foreach($resfiles as $file)
-
+                        <div class="style='background:#2d2d2d; border-radius: 10px; padding-left:10px;'">
                           <p class="down-files"><a href="{{route('response-download',
                                           [
                                               'questionid' => $data->questionid,
@@ -171,6 +171,9 @@ cursor: text !important;
                               >
                           <i class="icon-download-alt">{{$file['basename'] }} </i></a>
                           </p>
+                        </div>
+
+
                       @endforeach
                   </div>
 

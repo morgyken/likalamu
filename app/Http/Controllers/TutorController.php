@@ -113,6 +113,8 @@ class TutorController extends Controller
 
     public function TutorDetails(){
 
+      //become a tutor 
+
       return view ('tutor.tutor-det');
     }
 }

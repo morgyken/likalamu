@@ -62,21 +62,39 @@ class AdminQuestionController extends Controller
 
       $path_comm = public_path().'/storage/uploads/'.$questionid.'/'.$commentType.'/'.$commentid.'/';
 
-      $manuals = [];
-
-      $filesInFolder = \File::files($path_comm);
-
-
-
-      foreach($filesInFolder as $path)
+      if(self::folder_exist($path_comm))
       {
-          $manuals [] = pathinfo($path);
+        $manuals = [];
+
+        $filesInFolder = \File::files($path_comm);
+
+
+
+        foreach($filesInFolder as $path)
+        {
+            $manuals [] = pathinfo($path);
+        }
+
+        return $manuals;
+
       }
 
+      else{
 
-      return $manuals;
+        return NULL;
+
+      }
 
   }
+
+  public static function folder_exist($folder)
+    {
+        // Get canonicalized absolute pathname
+        $path = realpath($folder);
+
+        // If it exist, check if it's a directory
+        return ($path !== false AND is_dir($path)) ? $path : false;
+    }
 
   public function fileDownloads($dest){
 
@@ -101,10 +119,7 @@ class AdminQuestionController extends Controller
 
             ->toArray();
 
-    //$data = $data[0];
-
-
-    return $data;
+      return $data;
   }
 
   public function GetCommentsFiles($questionid, $commentid,  $type, $filename){
