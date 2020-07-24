@@ -14,7 +14,7 @@ class AdminQuestionController extends Controller
 
     public function getAllQuestions(){
 
-      $data =  DB::table('questions')->paginate(10);
+      $data =  DB::table('questions')->orderBy('deadline', 'asc')->paginate(20);
 
       return view('admina.all-questions', ['data' =>$data]);
 
@@ -39,11 +39,19 @@ class AdminQuestionController extends Controller
         //read comments
         $comments = $this->getComments($questionid);
 
+        //return the number of tutors that have bid the question
+        //this should be dynamic
+
+        $comments = $this->getComments($questionid);
+
         //return the view for question detail
 
+        //available bids ;
+
+        $questionbids = $this->showBids($questionid);
 
 
-        return view('admina.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments] );
+        return view('admina.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments, 'bids'=> $questionbids] );
     }
 
     public function downloads($question, $fileName){
@@ -127,6 +135,21 @@ class AdminQuestionController extends Controller
           $dest = public_path().'/storage/uploads/'.$questionid.'/'.$type.'/'.$commentid.'/'.$filename;
 
         return Response::download($dest);
+    }
+
+    public function showBids ($questionid){
+
+      //select from bids join tutors
+
+      $bids = DB::table('bid_tables')
+              ->join('users', 'users.id', '=', 'bid_tables.tutorid')
+              ->select('users.name', 'bid_tables.*')
+              ->where('bid_tables.questionid', '=', $questionid)
+              ->get();
+      //dd($bids);
+
+            return $bids;
+
     }
 
 }

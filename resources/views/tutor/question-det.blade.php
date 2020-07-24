@@ -84,9 +84,7 @@ cursor: text !important;
         <hr>
         <div>
           <label for="comment">File Uploads</label>
-           </div>
-
-
+        </div>
 
       <div style="background:#2d2d2d; border-radius: 10px; padding-left:10px;">
           <ol style="font-weight:600">
@@ -104,10 +102,23 @@ cursor: text !important;
              @endforeach
                </ol>
 
-            </div>
-
           </div>
+
       </div>
+      </div>
+
+      <br> <hr>
+     <div class="row">
+       <div class="col-lg-1">
+
+       </div>
+       <div class="col-lg-10">
+         <button type="button" class="btn btn-primary btn-lg col-lg-6" data-toggle="modal" data-target="#placeBids" name="button">Place Bid</button>
+         <button type="button" class="btn btn-warning btn-lg col-lg-6" data-toggle="modal" data-target="#takeQuestion" name="button">Take Question</button>
+
+           @include('extras.modals.tutor-modals')
+       </div>
+     </div>
     <br> <hr>
 
     <div class="row">

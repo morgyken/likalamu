@@ -37,7 +37,7 @@ class TutorController extends Controller
               ->get()
 
               ->toArray();
-
+      //dd($data);
       $data = $data[0];
 
       //read comments
@@ -113,7 +113,7 @@ class TutorController extends Controller
 
     public function TutorDetails(){
 
-      //become a tutor 
+      //become a tutor
 
       return view ('tutor.tutor-det');
     }

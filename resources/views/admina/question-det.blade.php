@@ -105,8 +105,41 @@ cursor: text !important;
 
            </div>
         </div>
+        <br> <hr>
+       <div class="row">
+         <div class="col-lg-1">
+
+         </div>
+         <div class="col-lg-10">
+           <button type="button" class="btn btn-primary btn-lg col-lg-6" data-toggle="modal" data-target="#selectTutor" name="button">Assign Question</button>
+           <button type="button" class="btn btn-secondary btn-lg  col-lg-6" name="button">Archive QUestion</button>
+           @include('extras.modals.select-tutor')
+         </div>
+       </div>
+
+       <br> <hr>
+      <div class="row">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-10">
+           @foreach($bids as $bid)
+           <div class="col-md-4">
+         </i> Name: <span class="q-details">{{$bid->name}}</span>
+           </div>
+           <div class="col-md-4">
+           </i>question id: <span class="q-details">{{$bid->questionid}}</span>
+           </div>
+           <div class="col-md-4">
+           Tutor ID:<span class="q-details"> {{$bid->tutorid}}</span>
+           </div>
+
+           @endforeach
+        </div>
+      </div>
 
         <br> <hr>
+
 
         <div class="row">
           <div class="col-lg-1">
@@ -120,7 +153,7 @@ cursor: text !important;
 
 
         </div>
-        
+
          <br> <hr>
       <div class="row">
         <div class="col-lg-1">
@@ -168,6 +201,19 @@ cursor: text !important;
               <button type="submit"  class="btn btn-warning btn-lg"> Continue </button>
               </div>
               </form>
+        </div>
+      </div>
+
+       <br> <hr>
+      <div class="row">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-10">
+          <button type="button" class="btn btn-primary btn-lg col-lg-4" name="button">Rate</button>
+          <button type="button" class="btn btn-secondary btn-lg  col-lg-4" name="button">Complete</button>
+          <button type="button" class="btn btn-primary btn-lg  col-lg-4" name="button">Reassign</button>
+
         </div>
       </div>
 

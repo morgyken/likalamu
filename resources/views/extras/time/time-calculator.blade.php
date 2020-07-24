@@ -18,6 +18,11 @@
         $TimeEnd = strtotime($deadline);
         $Difference = ($TimeEnd - $TimeStart);
         $interval = ConvertTime12($difference);
+
+        if (time() >= strtotime($deadline->toDateTimeString())) {
+        return $interval.' ago';
+        }
+
         return $interval; // array ['h']=>h, ['m]=> m, ['s'] =>s
     }
     function getDeadlineInSeconds12($deadline){
@@ -30,4 +35,3 @@
         return $Difference;
     }
     ?>
-  

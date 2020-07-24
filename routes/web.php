@@ -33,6 +33,10 @@ Route::get('/tutor/home', 'HomeController@tutor')->name('tutor-home');
 
 Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
 
+//rate tutor_ratings
+
+Route::post('/a/admin/post', 'QuestionDetailController@rateTutor')->name('post-question');
+
 //Admin get dtails
 
 Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-question');
@@ -53,6 +57,8 @@ Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-
 Route::post('/tutor/details/profile/', 'TutorController@UpdateProfile')->name('update-profile');
 Route::post('/tutor/details/account/', 'TutorController@UpdateAccount')->name('update-account');
 Route::post('/tutor/details/payments/', 'TutorController@UpdatePaymentDetails')->name('tutor-payment');
+Route::post('/tutor/question/placebids/', 'QuestionDetailController@PlaceBids')->name('place-bid');
+Route::post('/tutor/questions/takebids/', 'QuestionDetailController@takeBids')->name('take-bid');
 
 
 //files

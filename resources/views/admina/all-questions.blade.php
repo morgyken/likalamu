@@ -41,7 +41,7 @@
 <!-- col-lg-6 -->
 <div class="col-lg-8">
 
-<p>{{$value->summary}}</p>
+<p>{!! htmlspecialchars_decode($value->summary, ENT_NOQUOTES) !!}</p>
 <div class="q-details">
   <div class="col-md-2">
     <i class="fa fa-circle-o"></i> Price: <span class="q-details">{{$value->price}}</span>
