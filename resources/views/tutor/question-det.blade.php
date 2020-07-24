@@ -104,10 +104,10 @@ cursor: text !important;
              @endforeach
                </ol>
 
-    </div>
+            </div>
 
-  </div>
-    </div>
+          </div>
+      </div>
     <br> <hr>
 
     <div class="row">
@@ -119,7 +119,7 @@ cursor: text !important;
           @include('extras.comm.comment-files')
       </div>
 
-  
+
 
     </div>
 

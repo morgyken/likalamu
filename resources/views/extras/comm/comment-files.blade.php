@@ -1,51 +1,51 @@
+@foreach($comments as $comm)
+<div class="row">
+
+<div class="col-lg-10">
+  <br/> <hr />
+
+       <h5><a href="#"> Morgyken</a></h5>
+        Time:  {{ $comm->created_at }}
+       <p class="date"> </p>
+       <p class="comment">
+    {!! htmlspecialchars_decode($comm->answer, ENT_NOQUOTES)  !!}
+       </p>
 
 
-    <h5> Conversation History </h5>
-        @foreach($comments as $comm)
-                     <div class="desc">
-                         <h5><a href="#"> Morgyken</a></h5>
-                          Time:  {{ $comm->created_at }}
-                         <p class="date"> </p>
-                         <p class="comment">
-                      {!! htmlspecialchars_decode($comm->answer, ENT_NOQUOTES)  !!}
-                         </p>
+ @if($comm->mark ==1)
+ <?php  $type = "answer"?>
+ @else
 
-                     </div>
-
+ <?php  $type = "comments"?>
+ @endif
+ <?php
+  $resfiles = \App\Http\Controllers\AdminQuestionController::CommentFiles($data->questionid,  $comm->commentid, $type);
+  if($resfiles != null)
+  {
 
 
-         @if($comm->mark ==1)
-         <?php  $type = "answer"?>
-         @else
-
-         <?php  $type = "comments"?>
-         @endif
-         <?php
-          $resfiles = \App\Http\Controllers\AdminQuestionController::CommentFiles($data->questionid,  $comm->commentid, $type);
-          if($resfiles != null)
-          {
+?>
 
 
-        ?>
-         <div class="col-md-12">
+     @foreach($resfiles as $file)
 
-             @foreach($resfiles as $file)
+         <p class="down-files"><a href="{{route('response-download',
+                         [
+                             'questionid' => $data->questionid,
+                             'commentid' => $comm->commentid,
+                             'type'  => $type,
+                             'filename'=>$file['basename']
+                          ])}}"
+             >
+         <i class="icon-download-alt">{{$file['basename'] }} </i></a>
+         </p>
+     @endforeach
 
-                 <p class="down-files"><a href="{{route('response-download',
-                                 [
-                                     'questionid' => $data->questionid,
-                                     'commentid' => $comm->commentid,
-                                     'type'  => $type,
-                                     'filename'=>$file['basename']
-                                  ])}}"
-                     >
-                 <i class="icon-download-alt">{{$file['basename'] }} </i></a>
-                 </p>
-             @endforeach
+     <?php
+      }
+      ?>
 
-             <?php
-              }
-              ?>
-         </div>
+   </div>
+ </div>
 
-         @endforeach
+ @endforeach

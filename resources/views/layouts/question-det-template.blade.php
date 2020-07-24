@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title> Likalamu: Welocome </title>
+  <title> Likalamu: Welcome </title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -36,13 +36,13 @@
   ======================================================= -->
 </head>
 
-<body>
+<body class="clearfix">
   <!-- Fixed navbar -->
 @include('extras.nav.navbar-admina')
 
   <div id="blue">
     <div class="container">
-      <div class="row centered">
+      <div class="row centered" style="margin-top:90px">
         <div class="col-lg-8 col-lg-offset-2">
           <h4>WE WORK HARD TO ACHIEVE EXCELLENCE</h4>
           <p>AND WE ARE HAPPY TO DO IT</p>

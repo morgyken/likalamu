@@ -56,8 +56,6 @@ cursor: text !important;
   </div>
   <!-- col-lg-6 -->
   <div class="col-lg-10" style="background-color:#fff">
-
-
     <h2>{{$data->header}} </h2>
     <hr>
     <h4 style="font-size: 75%">
@@ -103,30 +101,27 @@ cursor: text !important;
                   <br>
              @endforeach
                </ol>
+             </div>
 
-    </div>
+           </div>
+        </div>
 
-  </div>
-    </div>
-    <br> <hr>
+        <br> <hr>
 
-    <div class="row">
-      <div class="col-lg-1">
+        <div class="row">
+          <div class="col-lg-1">
 
-      </div>
+          </div>
 
-      <div class="col-lg-10">
-          @include('extras.comm.comment-files')
-      </div>
-
-  
-
-    </div>
+          <div class="col-lg-10">
+              @include('extras.comm.comment-files')
+          </div>
 
 
-      <br> <hr>
 
-
+        </div>
+        
+         <br> <hr>
       <div class="row">
         <div class="col-lg-1">
         </div>
