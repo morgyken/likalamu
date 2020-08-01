@@ -53,6 +53,10 @@ Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-fil
 
 Route::post('/admin/assign/{questionid}', 'QuestionDetailController@assignBids')->name('assign-questions');
 
+//asign questions
+
+Route::post('/admin/archive/', 'QuestionDetailController@archiveQuestion')->name('archive-questions');
+
 //tutor routes
 
 Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');

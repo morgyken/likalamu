@@ -15,7 +15,17 @@ class TutorController extends Controller
     //home controller
     public function TutorAllQuestions(){
 
-        $data =  DB::table('questions')->paginate(10);
+        $data =  DB::table('questions')
+
+                ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+                ->where('matrices.archived','=', 0)
+
+                ->where('matrices.assigned','=', 'No')
+
+                ->orderBy('deadline', 'asc')
+
+                ->paginate(25);
 
         return view('tutor.all-questions', ['data' =>$data]);
 
@@ -42,11 +52,66 @@ class TutorController extends Controller
 
       //read comments
       $comments = $adminController->getComments($questionid);
-      //return the view for question detail
 
-      return view('tutor.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments] );
+      // get bids here
+      $bids = $this->getBidStatus($questionid);
+
+      //check assigned
+
+      $assigned = $this->checkAssigned($questionid);
+
+
+       return view('tutor.question-det',
+       [
+          'data' =>$data,
+          'files'=> $file, // question files
+           'comments' => $comments, //get comments
+           'bids'=> $bids ,//check the bids
+           'assigned' => $assigned // check if asigned
+
+       ] );
 
     }
+
+
+    //Check if tutor made bid
+
+    public function getBidStatus($questionid)
+    {
+        $bids = DB::table('bid_tables')
+
+                -> select('tutorid', 'questionid')
+
+                ->where('tutorid','=', Auth::user()->id )
+
+                ->where('questionid','=', $questionid)
+
+                ->get()
+
+                ->toArray();
+
+        return $bids;
+    }
+
+    //Check if tutor made bid
+
+    public function checkAssigned($questionid)
+    {
+        $assigned = DB::table('matrices')
+
+                //-> select('tutorid', 'questionid')
+
+                ->where('assigned','=', 1 )
+
+                ->where('qid','=', $questionid)
+
+                ->get()
+
+                ->toArray();
+
+        return $assigned;
+    }
+
 
     public function UpdateProfile(Request $request)
     {

@@ -45,13 +45,10 @@
 <h2>Select Tutor</h2>
 
 <input type="text" id="myInput" onkeyup="myFunction()" name="name"  placeholder="Search for names.." title="Type in a name">
-<input type="text" id="select" placeholder="Selected Tutor">
-
 <ol id="myUL">
   <?php foreach ($bids as $key => $value): ?>
     <li><a href="#" id="tutor" onclick="moveNumbers({{ $value->tutorid }})">{{ $value->name}}</a></li>
   <?php endforeach; ?>
-
 </ol>
 
 <input type="hidden" id="tid" name="tutorid" />
@@ -90,8 +87,6 @@ function myFunction() {
 
 }
 
-
 </script>
-
 </body>
 </html>

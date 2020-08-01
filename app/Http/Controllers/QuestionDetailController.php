@@ -47,8 +47,13 @@ class QuestionDetailController extends Controller
       DB::table('assignment_tables')->insert(
              [
                  'questionid' => $request->questionid,
+
                  'tutorid' => Auth::user()->id,
+
                  'userid' => Auth::user()->id,
+
+                 'name' => 'Morgyken', //add user
+
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
              ]
          );
@@ -81,9 +86,13 @@ class QuestionDetailController extends Controller
       DB::table('assignment_tables')->insert(
              [
                  'questionid' =>$questionid, // question id
+
                  'userid' => Auth::user()->id, // assigned by
+
                  'name' => $request->name, // assigned by
+
                  'tutorid' => $request->tutorid, // The tutor assigned to
+
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
              ]
          );
@@ -96,5 +105,16 @@ class QuestionDetailController extends Controller
     //admin make paymnent ::admin
 
     //show bids:: admina
+
+    //archive order
+    public function archiveQuestion(Request $request)
+    {
+      //call archive question
+
+      $this->makeReview($request->questionid, 'archived');
+
+      return redirect() ->back();
+    }
+
 
 }

@@ -18,6 +18,7 @@ class CreateMatricesTable extends Migration
             $table->string('qid');
             $table->string('assigned');
             $table->string('answered')->nullable();
+            $table->string('archived')->nullable();
             $table->string('paid')->nullable();
             $table->string('cancelled')->nullable();
             $table->string('revision')->nullable();

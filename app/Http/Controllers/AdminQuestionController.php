@@ -14,7 +14,17 @@ class AdminQuestionController extends Controller
 
     public function getAllQuestions(){
 
-      $data =  DB::table('questions')->orderBy('deadline', 'asc')->paginate(20);
+      $data =  DB::table('questions')
+
+                  ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+                  ->where('matrices.archived','=', 0)
+
+                  ->where('matrices.assigned','=', 'No')
+
+                  ->orderBy('deadline', 'asc')
+
+                  ->paginate(20);
 
       return view('admina.all-questions', ['data' =>$data]);
 

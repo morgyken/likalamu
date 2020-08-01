@@ -1,5 +1,5 @@
 
-@extends('layouts.question-det-template')
+@extends('layouts.question-det-template-tutor')
 
 @section('content')
 
@@ -49,6 +49,7 @@ cursor: text !important;
 </style>
 
 <div class="row">
+
   <div class="col-lg-1 centered">
     <h3> </h3>
     <img src="{{ URL::asset('spot/img/pic.jpg' )}}" alt="" height="50">
@@ -106,19 +107,28 @@ cursor: text !important;
 
       </div>
       </div>
-
+      @if(empty($assigned))
       <br> <hr>
      <div class="row">
        <div class="col-lg-1">
 
        </div>
        <div class="col-lg-10">
+         @if(empty($bids))
          <button type="button" class="btn btn-primary btn-lg col-lg-6" data-toggle="modal" data-target="#placeBids" name="button">Place Bid</button>
          <button type="button" class="btn btn-warning btn-lg col-lg-6" data-toggle="modal" data-target="#takeQuestion" name="button">Take Question</button>
 
-           @include('extras.modals.tutor-modals')
+         @include('extras.modals.tutor-modals')
+         @else
+         <h3> Thank you for making a bid on the question!</h3>
+         @endif
        </div>
      </div>
+
+     @endif
+
+
+       @if(!empty($assigned))
     <br> <hr>
 
     <div class="row">
@@ -129,15 +139,8 @@ cursor: text !important;
       <div class="col-lg-10">
           @include('extras.comm.comment-files')
       </div>
-
-
-
     </div>
-
-
       <br> <hr>
-
-
       <div class="row">
         <div class="col-lg-1">
         </div>
@@ -158,9 +161,7 @@ cursor: text !important;
                 </label>
                 <br> <br>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                 <input type="hidden" name="questionid" value="{{ $data->questionid }}">
-
               </div>
               <div class="form-group">
                 <label for="comment">Post comment or Answer here</label>
@@ -177,7 +178,6 @@ cursor: text !important;
                               <input type="text" class="form-control" readonly>
                           </div>
                   </div>
-
               </div>
 
               <div class="form-group">
@@ -189,6 +189,8 @@ cursor: text !important;
 
 <br>
 <hr>
+
+@endif
 <!-- row -->
 
 <!-- row -->

@@ -12,9 +12,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="{{URL::to('/tutor/home')}}">HOME</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="services.html">SERVICES</a></li>
-        <li><a href="about.html">PAYMENTS</a></li>
+        <li><a href="about.html">CONTACT US</a></li>
         <li><a href="services.html">PROFILE</a></li>
           @if (Route::has('login'))
 
