@@ -51,7 +51,12 @@ class AdminQuestionController extends Controller
         $questionbids = $this->showBids($questionid);
 
 
-        return view('admina.question-det', ['data' =>$data, 'files'=> $file, 'comments' => $comments, 'bids'=> $questionbids] );
+        return view('admina.question-det',
+        [
+          'data' =>$data, 'files'=> $file,
+          'comments' => $comments, 'bids'=> $questionbids
+        ]
+      );
     }
 
     public function downloads($question, $fileName){

@@ -48,25 +48,53 @@ class QuestionDetailController extends Controller
              [
                  'questionid' => $request->questionid,
                  'tutorid' => Auth::user()->id,
+                 'userid' => Auth::user()->id,
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
              ]
          );
 
-          return redirect() ->back();
+         $this->makeReview($request->questionid, 'assigned');
+
+        return redirect() ->back();
     }
-    //complete Question by a tutors, mark as answer
 
+        //review can be completed, assigned,answered,paid,cancelled,revision,price,tutorprice,late,completed
 
+    public function makeReview($questionid, $review)
+    {
+      DB::table('matrices')->where('qid','=', $questionid)->update(
+             [
+                 $review=>1,
+                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+             ]
+         );
 
-    //put question on review by admin
+        //  return redirect() ->back();
+    }
 
-    //put question on revision
+    // admin assign bids
+    public function assignBids (Request $request, $questionid)
+    {
 
-    // Complete question by Admin
+    //  dd($request->tutorid);
+
+      DB::table('assignment_tables')->insert(
+             [
+                 'questionid' =>$questionid, // question id
+                 'userid' => Auth::user()->id, // assigned by
+                 'name' => $request->name, // assigned by
+                 'tutorid' => $request->tutorid, // The tutor assigned to
+                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+             ]
+         );
+
+         $this->makeReview($request->questionid, 'assigned');
+
+        return redirect() ->back();
+    }
 
     //admin make paymnent ::admin
 
     //show bids:: admina
-
 
 }

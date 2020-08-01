@@ -15,10 +15,19 @@ class CreateAssignmentTablesTable extends Migration
     {
         Schema::create('assignment_tables', function (Blueprint $table) {
             $table->id();
-            $table->text('questionid');
-            $table->text('tutorid');
-            $table->timestamps();
+
+            $table->text('userid'); //the person who assignes, may be student or admin
+
+            $table->text('questionid'); // id of the question
+
+            $table->text('tutorid'); // the assigned tutor
+
+            $table->text('name'); // tutorname
+
+            $table->timestamps(); // time stamps
+
             $table->rememberToken();
+
         });
     }
 

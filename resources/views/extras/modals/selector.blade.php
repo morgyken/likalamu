@@ -44,39 +44,32 @@
 
 <h2>Select Tutor</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<input type="text" id="myInput" onkeyup="myFunction()" name="name"  placeholder="Search for names.." title="Type in a name">
+<input type="text" id="select" placeholder="Selected Tutor">
 
 <ol id="myUL">
-  <li><a href="#">Adele</a></li>
-  <li><a href="#">Agnes</a></li>
+  <?php foreach ($bids as $key => $value): ?>
+    <li><a href="#" id="tutor" onclick="moveNumbers({{ $value->tutorid }})">{{ $value->name}}</a></li>
+  <?php endforeach; ?>
 
-  <li><a href="#">Billy</a></li>
-  <li><a href="#">Bob</a></li>
-
-  <li><a href="#">Calvin</a></li>
-  <li><a href="#">Christina</a></li>
-  <li><a href="#">Cindy</a></li>
 </ol>
 
-<input type="hidden" id="sizevalue" name="tutor" >
+<input type="hidden" id="tid" name="tutorid" />
 
-</form>
 <script type="text/javascript">
-  $('#myUL a').on('click', function(e) {
-  e.preventDefault();
 
-  // This removes the class on selected li's
-  $("#myUL li").removeClass("select");
+$(document).click(function(event) {
+    var text = $(event.target).text();
+    console.log(text);
+    document.getElementById("myInput").value=text;
+});
 
-  // adds 'select' class to the parent li of the clicked element
-  // 'this' here refers to the clicked a element
-  $(this).closest('li').addClass('select');
-
-  // sets the input field's value to the data value of the clicked a element
-  $('#sizevalue').val($(this).data('value'));
-  });
+function moveNumbers(number){
+        document.getElementById("tid").value=number;
+        var txt = $('#tutor').text();
+        console.log(number);
+    }
 </script>
-
 <script>
 function myFunction() {
     var input, filter, ul, li, a, i, txtValue;

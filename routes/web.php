@@ -49,6 +49,10 @@ Route::get('/a/admin/get/det/{questionid}', 'AdminQuestionController@viewQuestio
 
 Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-files');
 
+//asign questions
+
+Route::post('/admin/assign/{questionid}', 'QuestionDetailController@assignBids')->name('assign-questions');
+
 //tutor routes
 
 Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
