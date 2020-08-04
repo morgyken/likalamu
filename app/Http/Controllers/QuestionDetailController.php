@@ -125,9 +125,36 @@ class QuestionDetailController extends Controller
 
     //put on review
 
+    //mark as complete
+
+    public function completeQuestion(Request $request)
+    {
+      //call archive question
+
+      $this->makeReview($request->questionid, 'completed');
+
+      return redirect() ->back();
+    }
     //reassign question
 
-    // mark as complete
+    public function reassignQuestion(Request $request)
+    {
+      //callcomplete question
+
+      DB::table('matrices')->where('qid','=', $questionid)->update(
+             [
+                 'revision'=>0,
+                 'assigned'=>0,
+                 'answered'=>0,
+                 'finished'=>0,
+                 'paid'=>0,
+                 'revision'=>0,
+                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+             ]
+         );
+
+      return redirect() ->back();
+    }
 
 
 
