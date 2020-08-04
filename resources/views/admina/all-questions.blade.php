@@ -39,31 +39,45 @@
     <h5>Name</h5>
 </div>
 <!-- col-lg-6 -->
-<div class="col-lg-8">
 
-<p>{!! htmlspecialchars_decode($value->summary, ENT_NOQUOTES) !!}</p>
+<div class="col-lg-10 qbody" data-href="{{route('tutor-question-det', ['questionid' => $value->questionid])}}">
+
+<p>{{$value->summary}}</p>
 <div class="q-details">
   <div class="col-md-2">
-    <i class="fa fa-circle-o"></i> Price: <span class="q-details">{{$value->price}}</span>
-  </div>
-  <div class="col-md-4">
-  Deadline:<span class="q-details"> {{$value->deadline}}</span>
-  </div>
+    <h5 style="color:#ff6600; font-weight: 650">ID: {{$value->questionid}} </h5>
 
-  <div class="col-md-4">
-  Time remaining: <span class="q-details">{{$array_of_deadline}}</span>
   </div>
   <div class="col-md-2">
-  <a href="{{route('admin-question-det', ['questionid' => $value->questionid])}}" class="q-details">view </a>
+    <h5>Price: <span class="q-details">{{$value->tutorprice}}</span></h5>
+    <!--  Deadline:<span class="q-details"> {{$value->deadline}}</span> -->
   </div>
+
+  <div class="col-md-3">
+  <h5>Time: <span class="q-details">{{$array_of_deadline}}</span></h5>
+  </div>
+
+  <div class="col-md-2">
+  @inject('provider', 'App\Http\Controllers\TutorController')
+    <?php
+      $status =$provider::findStatusNew($value->questionid);
+     ?>
+    @if($status == "New")
+    <h5 style="color:green;">{{ $provider::findStatusNew($value->questionid) }}</h5>
+    @else
+      <h5 style="color:#ff625c;">{{ $provider::findStatusNew($value->questionid) }}</h5>
+    @endif
+  </div>
+
+  <div class="col-md-2">
+  <h5><a href="{{route('admin-question-det', ['questionid' => $value->questionid])}}" class="q-details">view </a>
+  </div>
+
+</div>
+
 </div>
 
 
-
-</div>
-<div class="col-md-2">
-<p>Completed</p>
-</div>
 </div>
 <br>
 <hr>

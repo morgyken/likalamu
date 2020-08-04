@@ -24,6 +24,12 @@
   <!-- Main Stylesheet File -->
   <link href="{{ URL::asset('spot/css/style.css ') }}" rel="stylesheet">
 
+  <!-- Main Stylesheet File -->
+  <link href="{{ URL::asset('star-rating/css/star-rating.css ') }}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{{ URL::asset('star-rating/css/star-rating.min.css ') }}" rel="stylesheet">
+
 <!-- Include font awesome  -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -171,6 +177,7 @@
   <script src="{{ URL::asset('spot/lib/chart/chart.js')}}"></script>
     <!-- Template Main Javascript File -->
   <script src="{{ URL::asset('spot/js/main.js')}}"></script>
+  <script src="{{ URL::asset('star-rating/js/star-rating.min.js')}}"></script>
 
 </body>
 </html>

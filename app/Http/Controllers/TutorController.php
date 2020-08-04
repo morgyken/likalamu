@@ -13,8 +13,14 @@ class TutorController extends Controller
     //
 
     //home controller
-    public function TutorAllQuestions(){
+    public function TutorAllQuestions($status=NULL){
 
+      //Add status: revision, paid, assigned, review, revision, finished, last payment
+
+      // Assigned, Completed, Review, Revision,Finished, Last Payment
+
+      if($status== NULL)
+      {
         $data =  DB::table('questions')
 
                 ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
@@ -27,7 +33,95 @@ class TutorController extends Controller
 
                 ->paginate(25);
 
-        return view('tutor.all-questions', ['data' =>$data]);
+        }
+      else {
+        // code...
+        $data =  DB::table('questions')
+
+                ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+                ->where('matrices.archived','=', 0)
+
+                ->where('matrices.assigned','=', 0)
+
+                ->whereRaw('matrices.'.$status.'= ?', [1])
+
+                ->orderBy('deadline', 'asc')
+
+                ->paginate(25);
+                //hide cancelled from tutor
+
+      }
+
+      return view('tutor.all-questions', ['data' =>$data]);
+    }
+
+    public static function findStatus($question) //called on blade all questions
+    {
+
+        $data =  DB::table('matrices')->where('qid','=', $question)->get();
+        //dd($data[0]->paid);
+
+        if($data[0]->paid ==1 )
+        {
+          $status = "Paid";
+
+        }
+        if($data[0]->completed ==1 )
+        {
+          $status = "Complete";
+
+        }
+        if($data[0]->reviews ==1 )
+        {
+          $status = "Review";
+
+        }
+        if($data[0]->revision ==1 )
+        {
+          $status = "Revision";
+
+        }
+        if($data[0]->answered ==1 )
+        {
+          $status = "Answered";
+
+        }
+        if($data[0]->assigned ==1 )
+        {
+          $status = "Assigned";
+
+        }
+        if($data[0]->assigned ==0 )
+        {
+          $status = "New";
+
+        }
+
+        return $status;
+
+    }
+
+    // home page status
+    public static function findStatusNew($question) //called on blade all questions
+    {
+
+        $data =  DB::table('matrices')->where('qid','=', $question)->get();
+        //dd($data[0]->paid);
+
+        if($data[0]->revision ==1 )
+        {
+          $status = "Revision";
+
+        }
+
+        else
+        {
+          $status = "New";
+
+        }
+
+        return $status;
 
     }
 
@@ -182,4 +276,5 @@ class TutorController extends Controller
 
       return view ('tutor.tutor-det');
     }
+
 }

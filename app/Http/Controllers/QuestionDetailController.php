@@ -26,13 +26,20 @@ class QuestionDetailController extends Controller
     //Assign questions to a tutor
 
     //rate tutor
-    public function rateTutor (Request $request)
+    public function rateTutor (Request $request, $questionid)
     {
+      //tutor id
+      $tutor = DB::table('assignment_tables')
+
+            ->where('questionid', '=', $request->questionid)->pluck('tutorid');
+      //dd($tutor[0]);
+
       DB::table('tutor_ratings')->insert(
              [
-                 'tutorid' => $request->tutorid,
+                 'tutorid' => $tutor[0],
                  'userid' => Auth::user()->id,
-                 'rating' => 5,
+                 'rating' => $request->rating,
+                 'comment' =>$request->comment,
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
              ]
          );
@@ -115,6 +122,13 @@ class QuestionDetailController extends Controller
 
       return redirect() ->back();
     }
+
+    //put on review
+
+    //reassign question
+
+    // mark as complete
+
 
 
 }

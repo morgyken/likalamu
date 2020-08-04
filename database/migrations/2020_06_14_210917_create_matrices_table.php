@@ -16,16 +16,17 @@ class CreateMatricesTable extends Migration
         Schema::create('matrices', function (Blueprint $table) {
             $table->id();
             $table->string('qid');
-            $table->string('assigned');
-            $table->string('answered')->nullable();
-            $table->string('archived')->nullable();
-            $table->string('paid')->nullable();
-            $table->string('cancelled')->nullable();
-            $table->string('revision')->nullable();
-            $table->string('price')->nullable();
-            $table->string('tutorprice')->nullable();
-            $table->string('late')->nullable();
-            $table->string('completed')->nullable();
+            $table->integer('assigned');
+            $table->integer('answered')->nullable();
+            $table->integer('archived')->nullable();
+            $table->integer('paid')->nullable();
+            $table->integer('cancelled')->nullable();
+            $table->integer('revision')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('reviews')->nullable();
+            $table->double('amount', 8, 2)->nullable();
+            $table->integer('late')->nullable();
+            $table->integer('completed')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

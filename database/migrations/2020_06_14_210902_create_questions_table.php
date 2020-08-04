@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->string('header');
             $table->text('summary');
             $table->string('pages');
-            $table->string('price');
+            $table->string('studentprice');
             $table->string('tutorprice');
             $table->string('format');
             $table->string('deadline');

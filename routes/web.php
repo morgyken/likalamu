@@ -35,7 +35,8 @@ Route::post('/a/admin/post', 'AskQuestionController@postQuestion')->name('post-q
 
 //rate tutor_ratings
 
-Route::post('/a/admin/post', 'QuestionDetailController@rateTutor')->name('post-question');
+Route::post('/a/admin/rate/{questionid}', 'QuestionDetailController@rateTutor')->name('rate-tutor');
+
 
 //Admin get dtails
 
@@ -59,7 +60,7 @@ Route::post('/admin/archive/', 'QuestionDetailController@archiveQuestion')->name
 
 //tutor routes
 
-Route::get('/tutor/view/all/questions/', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
+Route::get('/tutor/view/all/questions/{status?}', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
 Route::get('/tutor/view/question/details/{questionid}', 'TutorController@TutorQuestionDetails')->name('tutor-question-det');
 Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-det');
 Route::post('/tutor/details/profile/', 'TutorController@UpdateProfile')->name('update-profile');

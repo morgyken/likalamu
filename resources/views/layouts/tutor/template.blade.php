@@ -40,6 +40,7 @@
         <div class="col-lg-8 col-lg-offset-2">
           <h4>WE WORK HARD TO ACHIEVE EXCELLENCE</h4>
           <p>AND WE ARE HAPPY TO DO IT</p>
+            @include ('extras.nav.navbar-tutor-subnav')
         </div>
       </div>
       <!-- row -->
@@ -161,7 +162,7 @@
   </div>
 
   <!-- JavaScript Libraries -->
-  <script src="{{ URL::asset('spot/lib//jquery/jquery.min.js')}}"></script>
+  <script src="{{ URL::asset('js/jquery-3.5.1.min.js')}}"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
   <script src="{{ URL::asset('spot/lib/bootstrap/js/bootstrap.min.js')}}"></script>

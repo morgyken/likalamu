@@ -66,7 +66,7 @@ cursor: text !important;
       </i> ID: <span class="q-details">{{$data->questionid}}</span>
       </div>
       <div class="col-md-2">
-      </i> Price: <span class="q-details">{{$data->price}}</span>
+      </i> Price: <span class="q-details">{{$data->tutorprice}}</span>
       </div>
       <div class="col-md-3">
       Deadline:<span class="q-details"> {{$data->deadline}}</span>
@@ -76,7 +76,7 @@ cursor: text !important;
       Time remaining: <span class="q-details">{{$array_of_deadline}}</span>
       </div>
 
-      Price: ${{ $data->price}} </h5>
+      Price: ${{ $data->tutorprice}} </h5>
     <hr>
 
       <p> {!! htmlspecialchars_decode($data-> body, ENT_NOQUOTES);!!} </p>

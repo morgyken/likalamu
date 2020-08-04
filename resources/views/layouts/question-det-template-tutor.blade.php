@@ -45,19 +45,8 @@
       <div class="row centered" style="margin-top:90px">
         <div class="col-lg-10 col-lg-offset-1">
           <h4>WE WORK HARD TO ACHIEVE EXCELLENCE</h4>
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <ul class="nav navbar-nav" style="text-align:center">
-                <li class="active"><a href="{{URL::to('/tutor/view/all/questions/')}}">All Avalilable</a></li>
-                <li><a href="#">Assigned</a></li>
-                <li><a href="#">Completed</a></li>
-                <li><a href="#">Review</a></li>
-                <li><a href="#">Revision</a></li>
-                <li><a href="#">Finished</a></li>
-                <li><a href="#">Last Payment</a></li>
-              </ul>
-            </div>
-          </nav>
+          <p>AND WE ARE HAPPY TO DO IT</p>
+          @include ('extras.nav.navbar-tutor-subnav')
         </div>
       </div>
       <!-- row -->

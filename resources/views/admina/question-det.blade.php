@@ -63,7 +63,7 @@ cursor: text !important;
       </i> ID: <span class="q-details">{{$data->questionid}}</span>
       </div>
       <div class="col-md-2">
-      </i> Price: <span class="q-details">{{$data->price}}</span>
+      </i> Tutor Price: <span class="q-details">${{$data->tutorprice}}</span>
       </div>
       <div class="col-md-3">
       Deadline:<span class="q-details"> {{$data->deadline}}</span>
@@ -73,7 +73,7 @@ cursor: text !important;
       Time remaining: <span class="q-details">{{$array_of_deadline}}</span>
       </div>
 
-      Price: ${{ $data->price}} </h5>
+      Price: ${{ $data->studentprice}} </h5>
     <hr>
 
       <p> {!! htmlspecialchars_decode($data-> body, ENT_NOQUOTES);!!} </p>
@@ -82,9 +82,7 @@ cursor: text !important;
         <hr>
         <div>
           <label for="comment">File Uploads</label>
-           </div>
-
-
+        </div>
 
       <div style="background:#2d2d2d; border-radius: 10px; padding-left:10px;">
           <ol style="font-weight:600">
@@ -115,6 +113,7 @@ cursor: text !important;
            <button type="button" class="btn btn-secondary btn-lg  col-lg-6" data-toggle="modal" data-target="#archiveQuestion"  name="button">Archive QUestion</button>
            @include('extras.modals.select-tutor')
            @include('extras.modals.archive-question')
+           @include('extras.modals.rate-tutor')
          </div>
        </div>
 
@@ -189,7 +188,7 @@ cursor: text !important;
 
         </div>
         <div class="col-lg-10">
-          <button type="button" class="btn btn-primary btn-lg col-lg-4" name="button">Rate</button>
+          <button type="button" class="btn btn-primary btn-lg col-lg-4" data-toggle="modal" data-target="#rateTutor" name="button">Rate</button>
           <button type="button" class="btn btn-secondary btn-lg  col-lg-4" name="button">Complete</button>
           <button type="button" class="btn btn-primary btn-lg  col-lg-4" name="button">Reassign</button>
 

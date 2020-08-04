@@ -18,6 +18,7 @@ class CreateTutorRatingsTable extends Migration
             $table->text('tutorid');
             $table->text('userid');
             $table->text('rating');
+            $table->text('comment');
             //$table->timestamps();
             $table->rememberToken();
             $table->timestamps();

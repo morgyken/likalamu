@@ -47,5 +47,6 @@ class HomeController extends Controller
     {
       return view ('tutor/home');
     }
+    //add reviewer, caller and bidder.
 
 }
