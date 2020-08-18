@@ -24,6 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+      //$schedule->commnad('command:tutorPayments')->weekly()->thursdays()->at('23:55');
+
+      $schedule->commnad('command:tutorPayments')->everyMinute();     
         // $schedule->command('inspire')->hourly();
     }
 

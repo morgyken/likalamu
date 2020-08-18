@@ -8,6 +8,8 @@ use DB;
 
 use Response;
 
+use Carbon\Carbon;
+
 class AdminQuestionController extends Controller
 {
     //view my questions
@@ -166,5 +168,56 @@ class AdminQuestionController extends Controller
             return $bids;
 
     }
+
+    //calculate payments
+
+    public static function calculatePayments ()
+    {
+
+      $fromDate = Carbon::now()->subDays(11)->format('Y-m-d');
+      $tillDate = Carbon::now()->subDay()->format('Y-m-d');
+
+      //select all orders completed between the above dates
+
+      $completedOrders = DB::table('questions')
+
+      ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+      ->join('assignment_tables', 'matrices.qid', '=', 'assignment_tables.questionid')
+
+      ->join('users', 'users.id', '=', 'assignment_tables.tutorid')
+
+      ->select(DB::raw('assignment_tables.tutorid, users.name, users.email, users.phone, sum(questions.tutorprice) as tutorpay'))
+
+      ->groupBy('assignment_tables.tutorid', 'users.name', 'users.email', 'users.phone')
+
+      ->get()
+
+      ->toArray();
+
+      //dd($completedOrders);
+
+
+      //insert this value to the tutor account
+
+            foreach($completedOrders as $orders)
+            {
+            //  dd($orders->tutorid);
+
+              DB::table('tutor_payments')->insert([
+                'tutorid' => $orders->tutorid,
+                'name'=> $orders->name,
+                'phone' =>$orders->phone,
+                'email' => $orders->email,
+                'tutorpay' => $orders->tutorpay,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
+                  ]
+                );
+            }
+
+
+      }
 
 }

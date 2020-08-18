@@ -26,7 +26,7 @@ class DropzoneController extends Controller
     {
 
       dd(public_path('images'));
-      
+
      $images = \File::allFiles(public_path('images'));
      $output = '<div class="row">';
      foreach($images as $image)

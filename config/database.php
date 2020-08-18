@@ -41,7 +41,11 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
+
+            // Explicitly disable all modes, overriding strict setting
+            'modes' => [],
+
+          ],
 
         'mysql' => [
             'driver' => 'mysql',
@@ -56,7 +60,9 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => true,
+            'strict' => false,
+            'modes' => [],
+            //traditional applications and the guru and the train..
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
@@ -108,12 +114,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Redis Databases
+    | disable strict mode
     |--------------------------------------------------------------------------
     |
-    | Redis is an open source, fast, and advanced key-value store that also
-    | provides a richer body of commands than a typical key-value system
-    | such as APC or Memcached. Laravel makes it easy to dig right in.
+    | This table keeps track of all the migrations that have already run for
+    | your application. Using this information, we can determine which of
+    | the migrations on disk haven't actually been run in the database.
     |
     */
 
