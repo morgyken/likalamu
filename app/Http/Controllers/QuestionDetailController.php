@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\AdminQuestionController;
+
 use DB;
 
 use Auth;
@@ -156,6 +158,90 @@ class QuestionDetailController extends Controller
       return redirect() ->back();
     }
 
+    public function viewTutorPayments(){
+
+      //return all tutor payments
+
+      //last payment day // make payments on fridays like frid 4th sept
+
+      $payments = DB::table('tutor_payments')->get();
+
+      return view('admina.tutorpayments', ['data'=> $payments]);
+    }
+
+    public function viewTutorPaymentsDet(Request $request, $tutorid){
+
+      //tutor id, name, from user
+      //question id and det from questions
+      // question status from matrices
+
+      $orderscompleted = DB::table('questions')
+
+      ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+      ->join('assignment_tables', 'matrices.qid', '=', 'assignment_tables.questionid')
+
+      ->select(DB::raw('questions.questionid, questions.tutorprice, questions.deadline, matrices.completed, matrices.paid'))
+
+      ->where('assignment_tables.tutorid', '=', $tutorid)
+
+      ->get();
+
+      return view('admina.tutorpayment-det', ['data' => $orderscompleted]);
+
+    }
+
+    public function payTutors(Request $request, $data){
+
+      $data = json_decode($data);
+
+      //1. Update the tutor payment table
+
+      for($i= 0; $i< count($data); $i++)
+      {
+        $affected = DB::table('tutor_payments')
+                ->where('id',$data[$i])
+                ->update([
+                  'paid'=>1,
+                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
+                ]);
+      }
+
+
+      //2. update all questions that have been paid use their user ids and dates
+
+      // get finished orders
+
+      $finishedOrders = new AdminQuestionController();
+
+      $data= $finishedOrders->finishedOrders();
+
+    //  dd($finishedOrders1);
+
+    //dd($data);
+
+      for($i= 0; $i< count($data); $i++)
+      {
+        //update the matrices table for the paid orders
+
+        $affected = DB::table('matrices')
+                ->where('qid',$data[$i]->questionid)
+                ->update([
+                  'paid'=>1,
+                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
+                ]);
+
+      }
+
+
+      return redirect()->route('view-tutor-payments');
+
+    }
+
+
+    
 
 
 }

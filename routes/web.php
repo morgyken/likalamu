@@ -34,17 +34,21 @@ Route::any('/a/admin/post/comm/', 'AskQuestionController@PostComments')->name('p
 Route::get('/a/admin/get/all', 'AdminQuestionController@getAllQuestions')->name('adm-view-questions');
 Route::get('/a/admin/get/det/{questionid}', 'AdminQuestionController@viewQuestionDetails')->name('admin-question-det');
 Route::post('/dropzone', 'AskQuestionController@PostComments')->name('upload-files');
-
-
-
 Route::get('/a/admin/calculate/tutor', 'AdminQuestionController@calculatePayments')->name('calcTutorQuestion');
-
 //asign questions
 Route::post('/admin/assign/{questionid}', 'QuestionDetailController@assignBids')->name('assign-questions');
 //asign questions
 Route::post('/admin/archive/', 'QuestionDetailController@archiveQuestion')->name('archive-questions');
 //tutor routes
+
+Route::post('/a/admin/tutor/pay/confirm/{data}', 'QuestionDetailController@payTutors')->name('pay-tutors');
+
+//admin payment routes
+Route::get('/a/admin/tutor/pay/details/{tutorid}', 'QuestionDetailController@viewTutorPaymentsDet')->name('view-tutor-paymentsdet');
+Route::get('/a/admin/tutor/payments', 'QuestionDetailController@viewTutorPayments')->name('view-tutor-payments');
+
 Route::get('/tutor/view/all/questions/{status?}', 'TutorController@TutorAllQuestions')->name('tutor-all-questions');
+Route::get('/tutor/view/all/lastpayment/', 'TutorController@lastPayment')->name('last-payment');
 Route::get('/tutor/view/question/details/{questionid}', 'TutorController@TutorQuestionDetails')->name('tutor-question-det');
 Route::get('/tutor/view/details/', 'TutorController@TutorDetails')->name('tutor-det');
 Route::post('/tutor/details/profile/', 'TutorController@UpdateProfile')->name('update-profile');

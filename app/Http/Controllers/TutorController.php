@@ -8,6 +8,8 @@ use DB;
 
 use Auth;
 
+use App\Http\Controllers\AdminQuestionController;
+
 class TutorController extends Controller
 {
     //
@@ -118,6 +120,29 @@ class TutorController extends Controller
         else
         {
           $status = "New";
+
+        }
+
+        return $status;
+
+    }
+
+    // home page status
+    public static function findStatuaComplete($question) //called on blade all questions
+    {
+
+        $data =  DB::table('matrices')->where('qid','=', $question)->get();
+        //dd($data[0]->paid);
+
+        if($data[0]->paid ==1 )
+        {
+          $status = "Paid";
+
+        }
+
+        else
+        {
+          $status = "Not Paid";
 
         }
 
@@ -275,6 +300,17 @@ class TutorController extends Controller
       //become a tutor
 
       return view ('tutor.tutor-det');
+    }
+
+    public function lastPayment()
+    {
+      // get the paid orders
+        $last = new AdminQuestionController();
+
+        $payments = $last->tutorLastPayments();
+
+        return view('tutor.last-payments', ['data'=> $payments]);
+
     }
 
 }

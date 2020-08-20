@@ -8,6 +8,8 @@ use DB;
 
 use Response;
 
+use Auth;
+
 use Carbon\Carbon;
 
 class AdminQuestionController extends Controller
@@ -174,7 +176,7 @@ class AdminQuestionController extends Controller
     public static function calculatePayments ()
     {
 
-      $fromDate = Carbon::now()->subDays(11)->format('Y-m-d');
+      $fromDate = Carbon::now()->subDays(100)->format('Y-m-d');
       $tillDate = Carbon::now()->subDay()->format('Y-m-d');
 
       //select all orders completed between the above dates
@@ -189,18 +191,19 @@ class AdminQuestionController extends Controller
 
       ->select(DB::raw('assignment_tables.tutorid, users.name, users.email, users.phone, sum(questions.tutorprice) as tutorpay'))
 
+    //  ->where('questions.deadline', '', $fromDate)
+
+      ->whereBetween('questions.deadline', array($fromDate, $tillDate))
+
       ->groupBy('assignment_tables.tutorid', 'users.name', 'users.email', 'users.phone')
 
       ->get()
 
       ->toArray();
 
-      //dd($completedOrders);
+    //  dd($completedOrders);
 
-
-      //insert this value to the tutor account
-
-            foreach($completedOrders as $orders)
+        foreach($completedOrders as $orders)
             {
             //  dd($orders->tutorid);
 
@@ -219,5 +222,74 @@ class AdminQuestionController extends Controller
 
 
       }
+
+      public function finishedOrders()
+      {
+        $fromDate = Carbon::now()->subDays(80)->format('Y-m-d'); // use 20
+
+        $tillDate = Carbon::now()->subDay(5)->format('Y-m-d'); /// use 5
+
+
+        //select all orders completed between the above dates
+        // pay for orders finished by 3 days ago
+
+        $completedOrders = DB::table('questions')
+
+          ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+          ->select(DB::raw('questions.questionid'))
+
+          ->whereDate('questions.deadline','>=', $fromDate)
+
+          //->where('questions.deadline','<', $tillDate)
+
+          ->whereDate('questions.deadline','<=', $tillDate)
+
+          //->whereBetween('questions.deadline', [$fromDate, $tillDate])
+
+          ->where('matrices.completed', '=', 1)
+
+          ->get();
+
+        return $completedOrders;
+      }
+
+      //tutor last payments
+      public function tutorLastPayments()
+      {
+
+
+              $fromDate = Carbon::now()->subDays(80)->format('Y-m-d'); // use 20
+
+              $tillDate = Carbon::now()->subDay(5)->format('Y-m-d'); /// use 5
+
+              $paidOrders = DB::table('questions')
+
+                  ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
+
+                  ->join('assignment_tables', 'matrices.qid', '=', 'assignment_tables.questionid')
+
+                  ->select(DB::raw('*'))
+
+                  ->whereDate('questions.deadline','>=', $fromDate)
+
+                  //->where('questions.deadline','<', $tillDate)
+
+                  ->whereDate('questions.deadline','<=', $tillDate)
+
+                  //->whereBetween('questions.deadline', [$fromDate, $tillDate])
+
+                  ->where('matrices.paid', '=', 1) //answered, paid and completed are all 1
+
+                  ->where('assignment_tables.tutorid', '=', Auth::user()->id)
+
+                  ->paginate(10);
+
+
+                return $paidOrders;
+      }
+
+
+
 
 }

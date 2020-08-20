@@ -14,6 +14,7 @@
         <li class="active"><a href="{{URL::to('/tutor/home')}}">HOME</a></li>
         <li><a href="about.html">CONTACT US</a></li>
         <li><a href="services.html">PROFILE</a></li>
+        <li><a href="services.html">NEWS</a></li>
           @if (Route::has('login'))
 
                 @auth

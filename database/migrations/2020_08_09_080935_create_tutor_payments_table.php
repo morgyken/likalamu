@@ -26,6 +26,8 @@ class CreateTutorPaymentsTable extends Migration
 
             $table->text('tutorpay'); // id of the question
 
+            $table->text('paid')->nullable(); // id of the question
+
             $table->timestamps(); // time stamps
 
             $table->rememberToken();

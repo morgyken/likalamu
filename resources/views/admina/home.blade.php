@@ -34,7 +34,7 @@
     <div class="col-lg-3">
       <img class="img-circle" src="{{ URL::asset('spot/img/dollars.jpg ') }}" width="110" height="110" alt="">
       <h4>Payments</h4>
-      <p><a href="#">@All payments</a></p>
+      <p><a href="{{route('view-tutor-payments')}}">@All payments</a></p>
     </div>
     <!-- col-lg-3 -->
 

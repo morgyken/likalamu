@@ -7,7 +7,7 @@
       <li><a href="{{route('tutor-all-questions', ['status' => 'reviews'])}}">Review</a></li>
       <li><a href="{{route('tutor-all-questions', ['status' => 'revision'])}}">Revision</a></li>
       <li><a href="{{route('tutor-all-questions', ['status' => 'finished'])}}">Finished</a></li>
-      <li><a href="{{route('tutor-all-questions', ['status' => 'paid'])}}">Last Payment</a></li>
+      <li><a href="{{route('last-payment')}}">Last Payment</a></li>
     </ul>
   </div>
 </nav>
