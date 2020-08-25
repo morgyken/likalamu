@@ -40,9 +40,7 @@ Route::post('/admin/assign/{questionid}', 'QuestionDetailController@assignBids')
 //asign questions
 Route::post('/admin/archive/', 'QuestionDetailController@archiveQuestion')->name('archive-questions');
 //tutor routes
-
 Route::post('/a/admin/tutor/pay/confirm/{data}', 'QuestionDetailController@payTutors')->name('pay-tutors');
-
 //admin payment routes
 Route::get('/a/admin/tutor/pay/details/{tutorid}', 'QuestionDetailController@viewTutorPaymentsDet')->name('view-tutor-paymentsdet');
 Route::get('/a/admin/tutor/payments', 'QuestionDetailController@viewTutorPayments')->name('view-tutor-payments');
