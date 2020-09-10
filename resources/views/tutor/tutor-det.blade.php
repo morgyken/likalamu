@@ -5,8 +5,8 @@
 <div class="container desc">
   <div class="row">
     <br><br>
-    <div class="col-lg-3 centered">
-      <img src="{{ URL::asset('spot/img/p03.png')}}" alt="">
+    <div class="col-lg-2 centered">
+      <!--img src="{{ URL::asset('spot/img/p03.png')}}" alt=""-->
     </div>
     <!-- col-lg-6 -->
     <div class="col-lg-9">
@@ -19,8 +19,8 @@
   <hr>
   <br><br>
   <div class="row">
-    <div class="col-lg-3 centered">
-      <img src="{{ URL::asset('spot/img/p01.png ')}}" alt="">
+    <div class="col-lg-2 centered">
+
     </div>
     <!-- col-lg-6 -->
     <div class="col-lg-9">
@@ -34,8 +34,8 @@
   <hr>
   <br><br>
   <div class="row">
-    <div class="col-lg-3 centered">
-      <img src="{{ URL::asset('spot/img/p02.png ')}}" alt="">
+    <div class="col-lg-2 centered">
+      <img src="" alt="">
     </div>
     <!-- col-lg-6 -->
     <div class="col-lg-9">

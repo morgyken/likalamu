@@ -22,7 +22,9 @@ class AdminQuestionController extends Controller
 
                   ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
 
-                  ->where('matrices.archived','=', 0)
+                  //  ->where('matrices.archived','=', 0)
+
+                  ->where('matrices.archived','=', NULL)
 
                   ->where('matrices.assigned','=', 'No')
 

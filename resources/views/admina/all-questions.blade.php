@@ -41,8 +41,7 @@
 <!-- col-lg-6 -->
 
 <div class="col-lg-10 qbody" data-href="{{route('tutor-question-det', ['questionid' => $value->questionid])}}">
-
-<p>{{$value->summary}}</p>
+<p>{!! htmlspecialchars_decode($value->summary, ENT_NOQUOTES);!!}</p>
 <div class="q-details">
   <div class="col-md-2">
     <h5 style="color:#ff6600; font-weight: 650">ID: {{$value->questionid}} </h5>

@@ -128,7 +128,7 @@ class TutorController extends Controller
     }
 
     // home page status
-    public static function findStatuaComplete($question) //called on blade all questions
+    public static function findStatusComplete($question) //called on blade all questions
     {
 
         $data =  DB::table('matrices')->where('qid','=', $question)->get();
@@ -299,7 +299,22 @@ class TutorController extends Controller
 
       //become a tutor
 
-      return view ('tutor.tutor-det');
+      $user = Auth::user()->id;
+
+      //tutor data
+
+      $tutorData = DB::table('tutors')->where('tutorid', '=', $user)->get();
+
+      //account information
+
+      $accountData =DB::table('accounts')->where('tutorid', '=', $user)->get();
+      //payment information
+
+      $paymentData = DB::table('payment_details')->where('tutorid', '=', $user)->get();
+
+      //payment data
+
+      return view ('tutor.tutor-det', ['tutordata'=> $tutorData, 'accountdata'=> $accountData, 'paymentdata'=> $paymentData]);
     }
 
     public function lastPayment()
