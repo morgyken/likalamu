@@ -78,8 +78,12 @@ class QuestionDetailController extends Controller
     {
       DB::table('matrices')->where('qid','=', $questionid)->update(
              [
-                 $review=>1,
+                 $review => 1,
+
+                 'status' => $review,
+
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
              ]
          );
 
@@ -105,6 +109,8 @@ class QuestionDetailController extends Controller
                  'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
              ]
          );
+
+
 
          $this->makeReview($request->questionid, 'assigned');
 
@@ -241,7 +247,7 @@ class QuestionDetailController extends Controller
     }
 
 
-    
+
 
 
 }

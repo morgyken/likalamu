@@ -27,9 +27,9 @@ class TutorController extends Controller
 
                 ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
 
-                ->where('matrices.archived','=', 0)
+                ->where('matrices.archived','=', NULL)
 
-                ->where('matrices.assigned','=', 'No')
+                ->where('matrices.status','=','new')
 
                 ->orderBy('deadline', 'asc')
 
@@ -42,11 +42,11 @@ class TutorController extends Controller
 
                 ->join('matrices', 'matrices.qid', '=', 'questions.questionid')
 
-                ->where('matrices.archived','=', 0)
+                ->where('matrices.archived','=', NULL)
 
-                ->where('matrices.assigned','=', 0)
+                //->orWhere('matrices.assigned','=', 0)
 
-                ->whereRaw('matrices.'.$status.'= ?', [1])
+                ->whereRaw('matrices.status= ?', [$status])
 
                 ->orderBy('deadline', 'asc')
 
@@ -108,22 +108,10 @@ class TutorController extends Controller
     public static function findStatusNew($question) //called on blade all questions
     {
 
-        $data =  DB::table('matrices')->where('qid','=', $question)->get();
+        $data =  DB::table('matrices')->where('qid','=', $question)->first();
         //dd($data[0]->paid);
 
-        if($data[0]->revision ==1 )
-        {
-          $status = "Revision";
-
-        }
-
-        else
-        {
-          $status = "New";
-
-        }
-
-        return $status;
+        return $data->status;
 
     }
 

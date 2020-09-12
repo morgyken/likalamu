@@ -58,13 +58,14 @@
 
   <div class="col-md-2">
   @inject('provider', 'App\Http\Controllers\TutorController')
+
     <?php
       $status =$provider::findStatusNew($value->questionid);
      ?>
     @if($status == "New")
-    <h5 style="color:green;">{{ $provider::findStatusNew($value->questionid) }}</h5>
+    <h5 style="color:green;">{{$status}}</h5>
     @else
-      <h5 style="color:#ff625c;">{{ $provider::findStatusNew($value->questionid) }}</h5>
+      <h5 style="color:#ff625c;">{{ $status }}</h5>
     @endif
   </div>
 

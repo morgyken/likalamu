@@ -16,13 +16,14 @@ class CreateMatricesTable extends Migration
         Schema::create('matrices', function (Blueprint $table) {
             $table->id();
             $table->string('qid');
-            $table->integer('assigned');
+            $table->integer('assigned')->default(0);
             $table->integer('answered')->nullable();
             $table->integer('archived')->nullable();
+            $table->string('status')->nullable();
             $table->integer('paid')->nullable();
             $table->integer('cancelled')->nullable();
             $table->integer('revision')->nullable();
-            $table->integer('price')->nullable();
+            $table->integer('tutorprice')->nullable();
             $table->integer('reviews')->nullable();
             $table->double('amount', 8, 2)->nullable();
             $table->integer('late')->nullable();
